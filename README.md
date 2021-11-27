@@ -8,5 +8,5 @@ Tools for accessing apache activemq
 
 # Commandline tools
 
-See (jms-example-picocli/README.md)
+See [Commandline tools readme](jms-example-picocli/README.md)
 
