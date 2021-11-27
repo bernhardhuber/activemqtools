@@ -1,8 +1,12 @@
 # activemqtools
-Command line tools for apache activemq
+Tools for accessing apache activemq
 
 
 # Build Status
 
 [![Java CI with Maven](https://github.com/bernhardhuber/activemqtools/actions/workflows/maven.yml/badge.svg)](https://github.com/bernhardhuber/activemqtools/actions/workflows/maven.yml)
+
+# Commandline tools
+
+See jms-example-picocli/README.md
 
