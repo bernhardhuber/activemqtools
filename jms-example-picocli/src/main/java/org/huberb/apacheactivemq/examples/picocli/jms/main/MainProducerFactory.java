@@ -15,8 +15,6 @@
  */
 package org.huberb.apacheactivemq.examples.picocli.jms.main;
 
-import org.huberb.apacheactivemq.examples.picocli.jms.ProducerFactory;
-import org.huberb.apacheactivemq.examples.picocli.jms.MessagePropertyAsStringConverter;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -26,6 +24,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.huberb.apacheactivemq.examples.picocli.jms.AutoCloseableSupport;
+import org.huberb.apacheactivemq.examples.picocli.jms.MessagePropertyAsStringConverter;
+import org.huberb.apacheactivemq.examples.picocli.jms.ProducerFactory;
 import org.huberb.apacheactivemq.examples.picocli.jms.main.MainProducerFactory.QueueSubCommand;
 import org.huberb.apacheactivemq.examples.picocli.jms.main.MainProducerFactory.TopicSubCommand;
 import org.slf4j.Logger;
@@ -52,52 +52,74 @@ public class MainProducerFactory implements Callable<Integer> {
     private static final Logger logger = LoggerFactory.getLogger(MainProducerFactory.class);
 
     //--- activemq
-    @CommandLine.Option(names = {"--activemq-userName"}, defaultValue = "admin",
-            description = "activemq userName")
+    @CommandLine.Option(
+            names = {"--activemq-userName"},
+            defaultValue = "admin",
+            description = "activemq userName, default value: '${DEFAULT-VALUE}'")
     private String userName;
-    @CommandLine.Option(names = {"--activemq-password"}, defaultValue = "password",
-            description = "activemq password")
+    @CommandLine.Option(
+            names = {"--activemq-password"},
+            defaultValue = "password",
+            description = "activemq password, default value: '${DEFAULT-VALUE}'")
     private String password;
-    @CommandLine.Option(names = {"--activemq-brokerURL"}, defaultValue = "tcp://localhost:61616",
+    @CommandLine.Option(
+            names = {"--activemq-brokerURL"}, defaultValue = "tcp://localhost:61616",
             paramLabel = "BROKER_URL",
-            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616' ")
+            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616', default value: '${DEFAULT-VALUE}'")
     private String brokerURL;
 
     //--- jms session
-    @CommandLine.Option(names = {"--jms-session-transacted"}, defaultValue = "true",
-            description = "jms session transacted or non-transacted")
+    @CommandLine.Option(
+            names = {"--jms-session-transacted"},
+            defaultValue = "true",
+            description = "jms session transacted or non-transacted, default value: '${DEFAULT-VALUE}'")
     private boolean transacted = true;
-    @CommandLine.Option(names = {"--jms-session-acknowledgemode"}, defaultValue = "AUTO_ACKNOWLEDGE",
-            description = "jms session acknowledge mode")
+    @CommandLine.Option(
+            names = {"--jms-session-acknowledgemode"},
+            defaultValue = "AUTO_ACKNOWLEDGE",
+            description = "jms session acknowledge mode, default value: '${DEFAULT-VALUE}'")
     private String acknowledgeMode = "AUTO_ACKNOWLEDGE"; // Session.AUTO_ACKNOWLEDGE
 
     //--- jms producer
-    @CommandLine.Option(names = {"--jms-producer-timetolive"}, defaultValue = "60000",
-            description = "jms producer timetolive value in ms, eg. `60000'")
+    @CommandLine.Option(
+            names = {"--jms-producer-timetolive"},
+            defaultValue = "60000",
+            description = "jms producer timetolive value in ms, eg. `60000', default value: '${DEFAULT-VALUE}'")
     private long timeToLive = TimeUnit.MILLISECONDS.convert(60, TimeUnit.SECONDS);
-    @CommandLine.Option(names = {"--jms-producer-deliverymode"}, defaultValue = "PERSISTENT",
-            description = "jms producer deliverymode value [PERSISTENT|NON_PERSISTENT]")
+    @CommandLine.Option(
+            names = {"--jms-producer-deliverymode"},
+            defaultValue = "PERSISTENT",
+            description = "jms producer deliverymode value [PERSISTENT|NON_PERSISTENT], default value: '${DEFAULT-VALUE}'")
     private String deliveryMode = "PERSISTENT"; // DeliveryMode.PERSISTENT
-    @CommandLine.Option(names = {"--jms-producer-priority"}, defaultValue = "4",
-            description = "jms producer priortiy, eg. `4'")
+    @CommandLine.Option(
+            names = {"--jms-producer-priority"},
+            defaultValue = "4",
+            description = "jms producer priortiy, eg. `4', default value: '${DEFAULT-VALUE}'")
     private int priority = 4;
 
     //--- jms message header
-    @CommandLine.Option(names = {"--jms-message-property"},
+    @CommandLine.Option(
+            names = {"--jms-message-property"},
             description = "jms message property, format {type}:key=value;... type=[boolean|byte|double|float|int|long|object|string|short]")
     private String jmsMessageProperty;
 
     //--- message
-    @CommandLine.Option(names = {"--message-text"}, defaultValue = "Hello, world!",
-            description = "read message text from option value")
+    @CommandLine.Option(
+            names = {"--message-text"},
+            defaultValue = "Hello, world!",
+            description = "read message text from option value, default value: '${DEFAULT-VALUE}'")
     private String messageText;
-    @CommandLine.Option(names = {"--message-file"},
+    @CommandLine.Option(
+            names = {"--message-file"},
             description = "read message text from this file")
     private File messageFile;
-    @CommandLine.Option(names = {"--message-file-charset"}, defaultValue = "UTF-8",
-            description = "read message text using this charset")
+    @CommandLine.Option(
+            names = {"--message-file-charset"},
+            defaultValue = "UTF-8",
+            description = "read message text using this charset, default value: '${DEFAULT-VALUE}'")
     private String messageFileCharset;
-    @CommandLine.Option(names = {"--message-stdin"},
+    @CommandLine.Option(
+            names = {"--message-stdin"},
             description = "read message text from stdin")
     private boolean messageFromStdin;
 
@@ -143,7 +165,8 @@ public class MainProducerFactory implements Callable<Integer> {
             m.put("producer.priority", this.mainProducerFactory.priority);
 
             //-- message props
-            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainProducerFactory.jmsMessageProperty);
+            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter()
+                    .messagePropertyFromStringConverter(this.mainProducerFactory.jmsMessageProperty);
             m.putAll(jmsMessagePropertyMap);
 
             final ProducerFactorySupport producerFactorySupport = new ProducerFactorySupport(this.mainProducerFactory);

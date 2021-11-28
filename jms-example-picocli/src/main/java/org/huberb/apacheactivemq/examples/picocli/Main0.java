@@ -38,35 +38,75 @@ public class Main0 implements Callable<Integer> {
     private static final Logger logger = LoggerFactory.getLogger(Main0.class);
 
     //--- activemq 
-    @CommandLine.Option(names = {"--activemq-user"}, defaultValue = "admin", description = "activemq user")
+    @CommandLine.Option(
+            names = {"--activemq-user"},
+            paramLabel = "USER",
+            defaultValue = "admin",
+            description = "activemq user, default value: '${DEFAULT-VALUE}'")
     private String user;
-    @CommandLine.Option(names = {"--activemq-password"}, defaultValue = "password", description = "activemq password")
+    @CommandLine.Option(
+            names = {"--activemq-password"},
+            paramLabel = "PASSWORD",
+            defaultValue = "password",
+            description = "activemq password, default value: '${DEFAULT-VALUE}'")
     private String password;
 
-    @CommandLine.Option(names = {"--activemq-brokerURL"}, defaultValue = "tcp://localhost:61616", description = "activemq brokerURL")
+    @CommandLine.Option(
+            names = {"--activemq-brokerURL"},
+            paramLabel = "BROKER_URL",
+            defaultValue = "tcp://localhost:61616",
+            description = "activemq brokerURL, default value: '${DEFAULT-VALUE}'")
     private String brokerURL;
 
-    @CommandLine.Option(names = {"--activemq-host"}, defaultValue = "localhost", description = "activemq host")
+    @CommandLine.Option(
+            names = {"--activemq-host"},
+            paramLabel = "HOST",
+            defaultValue = "localhost",
+            description = "activemq host, default value: '${DEFAULT-VALUE}'")
     private String host;
-    @CommandLine.Option(names = {"--activemq-port"}, defaultValue = "61616", description = "activemq port")
+    @CommandLine.Option(
+            names = {"--activemq-port"},
+            paramLabel = "PORT",
+            defaultValue = "61616",
+            description = "activemq port, default value: '${DEFAULT-VALUE}'")
     private Integer port;
 
     //--- jms
-    @CommandLine.Option(names = {"--jms-queue"}, defaultValue = "test-queue", description = "jms destination queue")
+    @CommandLine.Option(
+            names = {"--jms-queue"},
+            paramLabel = "QUEUE",
+            defaultValue = "test-queue",
+            description = "jms destination queue, default value: '${DEFAULT-VALUE}'")
     private String queueName;
-    @CommandLine.Option(names = {"--jms-topic"}, defaultValue = "test-topic", description = "jms destination topic")
+    @CommandLine.Option(
+            names = {"--jms-topic"},
+            paramLabel = "TOPIC",
+            defaultValue = "test-topic",
+            description = "jms destination topic, default value: '${DEFAULT-VALUE}'")
     private String topicName;
 
-    @CommandLine.Option(names = {"--jms-transacted"}, defaultValue = "false", description = "jms transacted ")
+    @CommandLine.Option(
+            names = {"--jms-transacted"},
+            defaultValue = "false",
+            description = "jms transacted, default value: '${DEFAULT-VALUE}'")
     private Boolean transacted;
-    @CommandLine.Option(names = {"--jms-deliverymode"}, defaultValue = "NON_PERSISTENT", description = "jms delivery mode [PERSISTENT|NON_PERSISTENT]")
+    @CommandLine.Option(
+            names = {"--jms-deliverymode"},
+            defaultValue = "NON_PERSISTENT",
+            description = "jms delivery mode [PERSISTENT|NON_PERSISTENT], default value: '${DEFAULT-VALUE}'")
     private String deliveryMode;
 
-    @CommandLine.Option(names = {"--jms-timetolive"}, defaultValue = "60000", description = "jms timetolive [ms]")
+    @CommandLine.Option(
+            names = {"--jms-timetolive"},
+            defaultValue = "60000",
+            description = "jms timetolive [ms], default value: '${DEFAULT-VALUE}'")
     private Long timeToLive;
 
     //--- message
-    @CommandLine.Option(names = {"--nummessages"}, defaultValue = "100", description = "count of messages to produce")
+    @CommandLine.Option(
+            names = {"--nummessages"},
+            defaultValue = "100",
+            description = "count of messages to produce, default value: '${DEFAULT-VALUE}'")
     private Integer numMessages;
 
     @CommandLine.Option(names = {"--command", "-c"}, required = true, description = "command ["

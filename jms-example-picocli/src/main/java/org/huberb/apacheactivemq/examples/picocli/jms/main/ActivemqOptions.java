@@ -24,15 +24,23 @@ import picocli.CommandLine;
 public class ActivemqOptions {
     //--- activemq
 
-    @CommandLine.Option(names = {"--activemq-userName"}, defaultValue = "admin",
-            description = "activemq userName")
+    @CommandLine.Option(
+            names = {"--activemq-userName"},
+            paramLabel = "USERNAME",
+            defaultValue = "admin",
+            description = "activemq userName, default value: '${DEFAULT-VALUE}'")
     private String userName;
-    @CommandLine.Option(names = {"--activemq-password"}, defaultValue = "password",
-            description = "activemq password")
+    @CommandLine.Option(
+            names = {"--activemq-password"},
+            paramLabel = "PASSWORD",
+            defaultValue = "password",
+            description = "activemq password, default value: '${DEFAULT-VALUE}'")
     private String password;
-    @CommandLine.Option(names = {"--activemq-brokerURL"}, defaultValue = "tcp://localhost:61616",
+    @CommandLine.Option(
+            names = {"--activemq-brokerURL"},
             paramLabel = "BROKER_URL",
-            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616' ")
+            defaultValue = "tcp://localhost:61616",
+            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616', default value: '${DEFAULT-VALUE}'")
     private String brokerURL;
 
     public String getUserName() {

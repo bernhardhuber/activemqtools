@@ -48,7 +48,7 @@ public class MainAdvisoryConsumerFactory implements Callable<Integer> {
             paramLabel = "ADVISORY_TOPIC_NAME",
             required = false,
             defaultValue = "ActiveMQ.Advisory.>",
-            description = "jms advisory topic name")
+            description = "jms advisory topic name, default value: '${DEFAULT-VALUE}'")
     private String jmsDestinationAdvisoryTopicName;
     @CommandLine.Option(names = {"--jms-message-selector"},
             paramLabel = "MESSAGE-SELECTOR",
@@ -59,13 +59,13 @@ public class MainAdvisoryConsumerFactory implements Callable<Integer> {
             paramLabel = "MAX-RECEIVE-COUNT",
             required = false,
             defaultValue = "-1",
-            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages")
+            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages, default value: '${DEFAULT-VALUE}'")
     private int maxReceiveCount = -1;
     @CommandLine.Option(names = {"--jms-max-waittime-seconds"},
             paramLabel = "MAX-WAITTIME-SECONDS",
             required = false,
             defaultValue = "300",
-            description = "max time waiting for a message")
+            description = "max time waiting for a message, default value: '${DEFAULT-VALUE}'")
     private int maxWaittimeSeconds;
 
     public static void main(String[] args) {

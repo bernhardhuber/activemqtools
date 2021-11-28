@@ -27,9 +27,9 @@ import org.huberb.apacheactivemq.examples.picocli.jms.AutoCloseableSupport.JMSRu
 import org.huberb.apacheactivemq.examples.picocli.jms.ConsumerDurableTopicOnlyFactory;
 import org.huberb.apacheactivemq.examples.picocli.jms.ConsumerQueueOnlyFactory;
 import org.huberb.apacheactivemq.examples.picocli.jms.ConsumerTopicOnlyFactory;
+import org.huberb.apacheactivemq.examples.picocli.jms.main.MainConsumerFactory.DurableTopicSubCommand;
 import org.huberb.apacheactivemq.examples.picocli.jms.main.MainConsumerFactory.QueueSubCommand;
 import org.huberb.apacheactivemq.examples.picocli.jms.main.MainConsumerFactory.TopicSubCommand;
-import org.huberb.apacheactivemq.examples.picocli.jms.main.MainConsumerFactory.DurableTopicSubCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
@@ -71,28 +71,35 @@ public class MainConsumerFactory implements Callable<Integer> {
     private ActivemqOptions activemqOptions;
 
     //--- jms session
-    @CommandLine.Option(names = {"--jms-session-transacted"}, defaultValue = "true",
-            description = "jms session transacted or non-transacted")
+    @CommandLine.Option(
+            names = {"--jms-session-transacted"},
+            defaultValue = "true",
+            description = "jms session transacted or non-transacted, default value: '${DEFAULT-VALUE}'")
     private boolean transacted = true;
-    @CommandLine.Option(names = {"--jms-session-acknowledgemode"}, defaultValue = "AUTO_ACKNOWLEDGE",
-            description = "jms session acknowledge mode")
+    @CommandLine.Option(
+            names = {"--jms-session-acknowledgemode"},
+            defaultValue = "AUTO_ACKNOWLEDGE",
+            description = "jms session acknowledge mode, default value: '${DEFAULT-VALUE}'")
     private String acknowledgeMode = "AUTO_ACKNOWLEDGE"; // Session.AUTO_ACKNOWLEDGE
-    @CommandLine.Option(names = {"--jms-message-selector"},
+    @CommandLine.Option(
+            names = {"--jms-message-selector"},
             paramLabel = "MESSAGE-SELECTOR",
             required = false,
             description = "jms message-selector")
     private String jmsMessageSelector;
-    @CommandLine.Option(names = {"--jms-max-receive-count"},
+    @CommandLine.Option(
+            names = {"--jms-max-receive-count"},
             paramLabel = "MAX-RECEIVE-COUNT",
             required = false,
             defaultValue = "1",
-            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages")
+            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages, default value: '${DEFAULT-VALUE}'")
     private int maxReceiveCount;
-    @CommandLine.Option(names = {"--jms-max-waittime-seconds"},
+    @CommandLine.Option(
+            names = {"--jms-max-waittime-seconds"},
             paramLabel = "MAX-WAITTIME-SECONDS",
             required = false,
             defaultValue = "300",
-            description = "max time waiting for a message")
+            description = "max time waiting for a message, default value: '${DEFAULT-VALUE}'")
     private int maxWaittimeSeconds;
 
     public static void main(String[] args) {
