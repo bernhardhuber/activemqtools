@@ -36,7 +36,7 @@
         <module>jms-example-message-browser</module>
         <module>jms-example-queue-selector</module>
         <module>jms-example-composite-destinations</module>
-        
+
         <module>jms-example-picocli</module>
         <module>jms-example-webjms</module>
         <module>jms-example-lib</module>
@@ -50,7 +50,9 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <activemq.version>5.16.1</activemq.version>
         <picocli.version>4.6.1</picocli.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <junit.version>5.8.1</junit.version>
     </properties>
 
@@ -59,8 +61,24 @@
             <dependency>
                 <groupId>info.picocli</groupId>
                 <artifactId>picocli</artifactId>
-                <version>4.6.1</version>
+                <version>${picocli.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-jms_1.1_spec</artifactId>
+                <version>1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.junit</groupId>
                 <artifactId>junit-bom</artifactId>
@@ -72,21 +90,6 @@
     </dependencyManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.geronimo.specs</groupId>
-            <artifactId>geronimo-jms_1.1_spec</artifactId>
-            <version>1.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-client</artifactId>
-            <version>5.16.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.30</version>
-        </dependency>
     </dependencies>
 
     <build>
