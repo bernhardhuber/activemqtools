@@ -59,7 +59,7 @@ public class MainBrowserFactory implements Callable<Integer> {
             paramLabel = "MAX-COUNT",
             required = false,
             defaultValue = "-1",
-            description = "browse MAX-COUNT messages, default value: '${DEFAULT-VALUE}'")
+            description = "browse MAX-COUNT messages")
     private int maxBrowseCount;
 
     public static void main(String[] args) {

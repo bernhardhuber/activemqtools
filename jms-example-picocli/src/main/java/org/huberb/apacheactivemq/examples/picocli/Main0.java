@@ -42,33 +42,33 @@ public class Main0 implements Callable<Integer> {
             names = {"--activemq-user"},
             paramLabel = "USER",
             defaultValue = "admin",
-            description = "activemq user, default value: '${DEFAULT-VALUE}'")
+            description = "activemq user")
     private String user;
     @CommandLine.Option(
             names = {"--activemq-password"},
             paramLabel = "PASSWORD",
             defaultValue = "password",
-            description = "activemq password, default value: '${DEFAULT-VALUE}'")
+            description = "activemq password")
     private String password;
 
     @CommandLine.Option(
             names = {"--activemq-brokerURL"},
             paramLabel = "BROKER_URL",
             defaultValue = "tcp://localhost:61616",
-            description = "activemq brokerURL, default value: '${DEFAULT-VALUE}'")
+            description = "activemq brokerURL")
     private String brokerURL;
 
     @CommandLine.Option(
             names = {"--activemq-host"},
             paramLabel = "HOST",
             defaultValue = "localhost",
-            description = "activemq host, default value: '${DEFAULT-VALUE}'")
+            description = "activemq host")
     private String host;
     @CommandLine.Option(
             names = {"--activemq-port"},
             paramLabel = "PORT",
             defaultValue = "61616",
-            description = "activemq port, default value: '${DEFAULT-VALUE}'")
+            description = "activemq port")
     private Integer port;
 
     //--- jms
@@ -76,37 +76,37 @@ public class Main0 implements Callable<Integer> {
             names = {"--jms-queue"},
             paramLabel = "QUEUE",
             defaultValue = "test-queue",
-            description = "jms destination queue, default value: '${DEFAULT-VALUE}'")
+            description = "jms destination queue")
     private String queueName;
     @CommandLine.Option(
             names = {"--jms-topic"},
             paramLabel = "TOPIC",
             defaultValue = "test-topic",
-            description = "jms destination topic, default value: '${DEFAULT-VALUE}'")
+            description = "jms destination topic")
     private String topicName;
 
     @CommandLine.Option(
             names = {"--jms-transacted"},
             defaultValue = "false",
-            description = "jms transacted, default value: '${DEFAULT-VALUE}'")
+            description = "jms transacted")
     private Boolean transacted;
     @CommandLine.Option(
             names = {"--jms-deliverymode"},
             defaultValue = "NON_PERSISTENT",
-            description = "jms delivery mode [PERSISTENT|NON_PERSISTENT], default value: '${DEFAULT-VALUE}'")
+            description = "jms delivery mode [PERSISTENT|NON_PERSISTENT]")
     private String deliveryMode;
 
     @CommandLine.Option(
             names = {"--jms-timetolive"},
             defaultValue = "60000",
-            description = "jms timetolive [ms], default value: '${DEFAULT-VALUE}'")
+            description = "jms timetolive [ms]")
     private Long timeToLive;
 
     //--- message
     @CommandLine.Option(
             names = {"--nummessages"},
             defaultValue = "100",
-            description = "count of messages to produce, default value: '${DEFAULT-VALUE}'")
+            description = "count of messages to produce")
     private Integer numMessages;
 
     @CommandLine.Option(names = {"--command", "-c"}, required = true, description = "command ["

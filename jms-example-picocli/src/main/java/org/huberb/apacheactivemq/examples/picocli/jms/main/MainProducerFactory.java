@@ -55,46 +55,46 @@ public class MainProducerFactory implements Callable<Integer> {
     @CommandLine.Option(
             names = {"--activemq-userName"},
             defaultValue = "admin",
-            description = "activemq userName, default value: '${DEFAULT-VALUE}'")
+            description = "activemq userName")
     private String userName;
     @CommandLine.Option(
             names = {"--activemq-password"},
             defaultValue = "password",
-            description = "activemq password, default value: '${DEFAULT-VALUE}'")
+            description = "activemq password")
     private String password;
     @CommandLine.Option(
             names = {"--activemq-brokerURL"}, defaultValue = "tcp://localhost:61616",
             paramLabel = "BROKER_URL",
-            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616', default value: '${DEFAULT-VALUE}'")
+            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'")
     private String brokerURL;
 
     //--- jms session
     @CommandLine.Option(
             names = {"--jms-session-transacted"},
             defaultValue = "true",
-            description = "jms session transacted or non-transacted, default value: '${DEFAULT-VALUE}'")
+            description = "jms session transacted or non-transacted")
     private boolean transacted = true;
     @CommandLine.Option(
             names = {"--jms-session-acknowledgemode"},
             defaultValue = "AUTO_ACKNOWLEDGE",
-            description = "jms session acknowledge mode, default value: '${DEFAULT-VALUE}'")
+            description = "jms session acknowledge mode")
     private String acknowledgeMode = "AUTO_ACKNOWLEDGE"; // Session.AUTO_ACKNOWLEDGE
 
     //--- jms producer
     @CommandLine.Option(
             names = {"--jms-producer-timetolive"},
             defaultValue = "60000",
-            description = "jms producer timetolive value in ms, eg. `60000', default value: '${DEFAULT-VALUE}'")
+            description = "jms producer timetolive value in ms, eg. `60000'")
     private long timeToLive = TimeUnit.MILLISECONDS.convert(60, TimeUnit.SECONDS);
     @CommandLine.Option(
             names = {"--jms-producer-deliverymode"},
             defaultValue = "PERSISTENT",
-            description = "jms producer deliverymode value [PERSISTENT|NON_PERSISTENT], default value: '${DEFAULT-VALUE}'")
+            description = "jms producer deliverymode value [PERSISTENT|NON_PERSISTENT]")
     private String deliveryMode = "PERSISTENT"; // DeliveryMode.PERSISTENT
     @CommandLine.Option(
             names = {"--jms-producer-priority"},
             defaultValue = "4",
-            description = "jms producer priortiy, eg. `4', default value: '${DEFAULT-VALUE}'")
+            description = "jms producer priortiy, eg. `4'")
     private int priority = 4;
 
     //--- jms message header
@@ -107,7 +107,7 @@ public class MainProducerFactory implements Callable<Integer> {
     @CommandLine.Option(
             names = {"--message-text"},
             defaultValue = "Hello, world!",
-            description = "read message text from option value, default value: '${DEFAULT-VALUE}'")
+            description = "read message text from option value")
     private String messageText;
     @CommandLine.Option(
             names = {"--message-file"},
@@ -116,7 +116,7 @@ public class MainProducerFactory implements Callable<Integer> {
     @CommandLine.Option(
             names = {"--message-file-charset"},
             defaultValue = "UTF-8",
-            description = "read message text using this charset, default value: '${DEFAULT-VALUE}'")
+            description = "read message text using this charset")
     private String messageFileCharset;
     @CommandLine.Option(
             names = {"--message-stdin"},

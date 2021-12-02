@@ -74,12 +74,12 @@ public class MainConsumerFactory implements Callable<Integer> {
     @CommandLine.Option(
             names = {"--jms-session-transacted"},
             defaultValue = "true",
-            description = "jms session transacted or non-transacted, default value: '${DEFAULT-VALUE}'")
+            description = "jms session transacted or non-transacted")
     private boolean transacted = true;
     @CommandLine.Option(
             names = {"--jms-session-acknowledgemode"},
             defaultValue = "AUTO_ACKNOWLEDGE",
-            description = "jms session acknowledge mode, default value: '${DEFAULT-VALUE}'")
+            description = "jms session acknowledge mode")
     private String acknowledgeMode = "AUTO_ACKNOWLEDGE"; // Session.AUTO_ACKNOWLEDGE
     @CommandLine.Option(
             names = {"--jms-message-selector"},
@@ -92,14 +92,14 @@ public class MainConsumerFactory implements Callable<Integer> {
             paramLabel = "MAX-RECEIVE-COUNT",
             required = false,
             defaultValue = "1",
-            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages, default value: '${DEFAULT-VALUE}'")
+            description = "terminate after receiving MAX_RECEIVE_COUNT advisory messages")
     private int maxReceiveCount;
     @CommandLine.Option(
             names = {"--jms-max-waittime-seconds"},
             paramLabel = "MAX-WAITTIME-SECONDS",
             required = false,
             defaultValue = "300",
-            description = "max time waiting for a message, default value: '${DEFAULT-VALUE}'")
+            description = "max time waiting for a message")
     private int maxWaittimeSeconds;
 
     public static void main(String[] args) {
