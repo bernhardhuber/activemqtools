@@ -16,9 +16,8 @@
  */
 package example.queue.selector;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  * @author <a href="http://www.christianposta.com/blog">Christian Posta</a>
@@ -66,8 +65,7 @@ public class Producer {
 
         } catch (Exception e) {
             System.out.println("Caught exception!");
-        }
-        finally {
+        } finally {
             if (connection != null) {
                 try {
                     connection.close();

@@ -16,9 +16,8 @@
  */
 package example.queue.exclusive;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  * @author <a href="http://www.christianposta.com/blog">Christian Posta</a>
@@ -34,7 +33,7 @@ public class Consumer {
         if (args.length > 0) {
             url = args[0].trim();
         }
-        System.out.println("\nWaiting to receive messages... will timeout after " + TIMEOUT / 1000 +"s");
+        System.out.println("\nWaiting to receive messages... will timeout after " + TIMEOUT / 1000 + "s");
         ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory("admin", "password", url);
         Connection connection = null;
 
@@ -66,8 +65,7 @@ public class Consumer {
 
         } catch (Exception e) {
             System.out.println("Caught exception!");
-        }
-        finally {
+        } finally {
             if (connection != null) {
                 try {
                     connection.close();

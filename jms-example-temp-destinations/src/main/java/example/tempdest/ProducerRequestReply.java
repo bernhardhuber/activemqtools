@@ -58,7 +58,6 @@ public class ProducerRequestReply {
             numMessages = 0;
         }
 
-
         String url = "tcp://" + host + ":" + port;
         if (args.length > 0) {
             url = args[0].trim();
@@ -82,7 +81,7 @@ public class ProducerRequestReply {
                 timeToLive,
                 numMessages
         ));
-   final     ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
+        final ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
         Connection connection = null;
 
         try {

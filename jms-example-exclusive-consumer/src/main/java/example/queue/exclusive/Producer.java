@@ -16,14 +16,14 @@
  */
 package example.queue.exclusive;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-
 import javax.jms.*;
+import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  * @author <a href="http://www.christianposta.com/blog">Christian Posta</a>
  */
 public class Producer {
+
     private static final String BROKER_URL = "tcp://localhost:61616";
     private static final Boolean NON_TRANSACTED = false;
     private static final int NUM_MESSAGES_TO_SEND = 100;
@@ -58,8 +58,7 @@ public class Producer {
 
         } catch (Exception e) {
             System.out.println("Caught exception!");
-        }
-        finally {
+        } finally {
             if (connection != null) {
                 try {
                     connection.close();
