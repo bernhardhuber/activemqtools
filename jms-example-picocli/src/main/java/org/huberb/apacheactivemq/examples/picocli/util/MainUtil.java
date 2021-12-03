@@ -67,22 +67,22 @@ public class MainUtil implements Callable<Integer> {
 
     /**
      * Convert long value to Date and print it.
-     *
      */
     @Command(name = "longToDate",
+            showDefaultValues = true,
             description = "Convert long values to Date value and print both values")
     public static class LongToDateSubCommand implements Callable<Integer> {
 
-        @Parameters(arity = "1..*", paramLabel = "<long>", description = "long value to be converted to Date")
+        @Parameters(arity = "1..*", paramLabel = "LONG", description = "long values to be converted to Date")
         private Long[] longValues;
 
         @Override
         public Integer call() throws Exception {
             if (longValues != null && longValues.length > 0) {
                 for (int i = 0; i < longValues.length; i++) {
-                    Long l = longValues[i];
+                    final Long l = longValues[i];
                     if (l != null) {
-                        String lAsDateFormatted = convertLongToDate(l);
+                        final String lAsDateFormatted = convertLongToDate(l);
                         logger.info(String.format("#%d, long %d, date %s", i, l, lAsDateFormatted));
                     }
                 }
@@ -91,11 +91,11 @@ public class MainUtil implements Callable<Integer> {
         }
 
         String convertLongToDate(long l) {
-            Date d = new Date(l);
-            String pattern = "yyyy-MM-dd HH:mm:ss,S";
-            Locale locale = Locale.getDefault();
-            SimpleDateFormat sdf = new SimpleDateFormat(pattern, locale);
-            String result = sdf.format(d);
+            final Date d = new Date(l);
+            final String pattern = "yyyy-MM-dd HH:mm:ss,S";
+            final Locale locale = Locale.getDefault();
+            final SimpleDateFormat sdf = new SimpleDateFormat(pattern, locale);
+            final String result = sdf.format(d);
             return result;
         }
     }
@@ -152,7 +152,11 @@ public class MainUtil implements Callable<Integer> {
         @Override
         public Integer call() throws Exception {
             //---
-            final ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory(userName, password, brokerURL);
+            final ActiveMQConnectionFactory activeMQConnectionFactory
+                    = new ActiveMQConnectionFactory(
+                            userName,
+                            password,
+                            brokerURL);
 
             final Properties props = new Properties();
             activeMQConnectionFactory.populateProperties(props);
@@ -164,7 +168,5 @@ public class MainUtil implements Callable<Integer> {
             });
             return 0;
         }
-
     }
-
 }

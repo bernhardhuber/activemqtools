@@ -134,7 +134,7 @@ public class Main0 implements Callable<Integer> {
                 + "brokerURL %s, "
                 + "host %s, port %d, "
                 + "queue %s, topic %s, "
-                + "transacted %s, deliveryMode %s, timeToLive %d"
+                + "transacted %s, deliveryMode %s, timeToLive %d, "
                 + "numMessages %d",
                 this.command,
                 this.user, this.password,

@@ -69,7 +69,7 @@ public class Publisher {
                 + "transacted: %b, [TRANSACTED]%n"
                 + "deliveryMode: %d (PERSISTENT %d, NON_PERSISTENT %d), [DELIVERY_MODE]%n"
                 + "timeToLive: %d ms [TIME_TO_LIVE]%n"
-                + "numMessages %d",
+                + "numMessages %d [NUM_MESSAGES]%n",
                 url, user, password,
                 host, port,
                 topicName,
