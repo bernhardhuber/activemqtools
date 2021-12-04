@@ -40,27 +40,42 @@ public class LongToDateSubCommandTest {
     }
 
     @Test
-    public void testConvertLongToDate_20211204_222300() {
+    public void testConvertLongToDate_20211204_222300_LocalDateTime() {
         final LongToDateSubCommand instance = new LongToDateSubCommand();
         {
             final long epochMilliSeconds = LocalDateTime.of(2021, Month.DECEMBER, 4, 22, 23, 0)
                     .toEpochSecond(ZoneOffset.UTC)
                     * 1000L;
+            final String result = instance.convertLongToDate(epochMilliSeconds);
+            final String m = "" + result;
             assertAll(
                     () -> assertEquals(1638656580000L, epochMilliSeconds),
-                    () -> assertEquals("2021-12-04 23:23:00,0", instance.convertLongToDate(epochMilliSeconds))
+                    () -> assertTrue(
+                            "2021-12-04 23:23:00,0".equals(result)
+                            || "2021-12-04 22:23:00,0".equals(result),
+                            m)
             );
         }
+    }
+
+    @Test
+    public void testConvertLongToDate_20211204_222300_CalendarBuilder() {
+        final LongToDateSubCommand instance = new LongToDateSubCommand();
         {
-            final long epochMiliSeconds = new Calendar.Builder()
+            final long epochMilliSeconds = new Calendar.Builder()
                     .setDate(2021, Calendar.DECEMBER, 4)
                     .setTimeOfDay(22, 23, 0, 0)
                     .build()
                     .getTime()
                     .getTime();
+            final String result = instance.convertLongToDate(epochMilliSeconds);
+            final String m = "" + result;
             assertAll(
-                    () -> assertEquals(1638652980000L, epochMiliSeconds),
-                    () -> assertEquals("2021-12-04 22:23:00,0", instance.convertLongToDate(epochMiliSeconds))
+                    () -> assertEquals(1638652980000L, epochMilliSeconds),
+                    () -> assertTrue(
+                            "2021-12-04 23:23:00,0".equals(result)
+                            || "2021-12-04 22:23:00,0".equals(result),
+                            m)
             );
         }
     }
