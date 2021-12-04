@@ -1,0 +1,46 @@
+= MainBrowserFactory
+Browse messages from a queue.
+:TOC:
+
+== SYNOPSIS
+
+Browse messages from a queue.
+
+....
+MainBrowserFactory [-hV] [--activemq-brokerURL=BROKER_URL]
+    [--activemq-password=<password>]
+    [--activemq-userName=<userName>]
+    --jms-destination-queue=QUEUE
+    [--jms-max-browse-count=MAX-COUNT]
+    [--jms-message-selector=MESSAGE-SELECTOR]
+....
+
+== DESCRIPTION
+
+....
+Usage: MainBrowserFactory [-hV] [--activemq-brokerURL=BROKER_URL]
+                          [--activemq-password=<password>]
+                          [--activemq-userName=<userName>]
+                          --jms-destination-queue=QUEUE
+                          [--jms-max-browse-count=MAX-COUNT]
+                          [--jms-message-selector=MESSAGE-SELECTOR]
+Browse messages from a queue
+      --activemq-brokerURL=BROKER_URL
+                  activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'
+                    Default: tcp://localhost:61616
+      --activemq-password=<password>
+                  activemq password
+                    Default: password
+      --activemq-userName=<userName>
+                  activemq userName
+                    Default: admin
+  -h, --help      Show this help message and exit.
+      --jms-destination-queue=QUEUE
+                  jms destination queue name
+      --jms-max-browse-count=MAX-COUNT
+                  browse MAX-COUNT messages
+                    Default: -1
+      --jms-message-selector=MESSAGE-SELECTOR
+                  jms message-selector
+  -V, --version   Print version information and exit.
+....

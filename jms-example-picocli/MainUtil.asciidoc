@@ -1,0 +1,26 @@
+= MainUtil
+some utility commands.
+:TOC:
+
+== SYNOPSIS
+
+some utility commands.
+
+....
+MainUtil [-hV] [COMMAND]
+....
+
+== DESCRIPTION
+
+....
+Usage: MainUtil [-hV] [COMMAND]
+some utility commands
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+Commands:
+  longToDate                 Convert long values to Date value and print both
+                               values
+  systemProperties           print system properties
+  envProperties              print env properties
+  activeMqConnectionFactory  print activemq properties
+....

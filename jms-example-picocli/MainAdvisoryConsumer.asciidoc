@@ -1,0 +1,50 @@
+= MainAdvisoryConsumer
+Consume messages from advisory topics.
+:TOC:
+
+== SYNOPSIS
+
+....
+MainAdvisoryConsumer [-hV] [--activemq-brokerURL=BROKER_URL]
+    [--activemq-password=<password>]
+    [--activemq-userName=<userName>]
+    [--jms-destination-advisory-topic=ADVISORY_TOPIC_NAME]
+    [--jms-max-receive-count=MAX-RECEIVE-COUNT]
+    [--jms-max-waittime-seconds=MAX-WAITTIME-SECONDS]
+    [--jms-message-selector=MESSAGE-SELECTOR]
+....
+
+== DESCRIPTION
+
+....
+Usage: MainAdvisoryConsumer [-hV] [--activemq-brokerURL=BROKER_URL]
+                            [--activemq-password=<password>]
+                            [--activemq-userName=<userName>]
+                            [--jms-destination-advisory-topic=ADVISORY_TOPIC_NAME]
+                            [--jms-max-receive-count=MAX-RECEIVE-COUNT]
+                            [--jms-max-waittime-seconds=MAX-WAITTIME-SECONDS]
+                            [--jms-message-selector=MESSAGE-SELECTOR]
+Consume messages from advisory topics
+      --activemq-brokerURL=BROKER_URL
+                  activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'
+                    Default: tcp://localhost:61616
+      --activemq-password=<password>
+                  activemq password
+                    Default: password
+      --activemq-userName=<userName>
+                  activemq userName
+                    Default: admin
+  -h, --help      Show this help message and exit.
+      --jms-destination-advisory-topic=ADVISORY_TOPIC_NAME
+                  jms advisory topic name
+                    Default: ActiveMQ.Advisory.>
+      --jms-max-receive-count=MAX-RECEIVE-COUNT
+                  terminate after receiving MAX_RECEIVE_COUNT advisory messages
+                    Default: -1
+      --jms-max-waittime-seconds=MAX-WAITTIME-SECONDS
+                  max time waiting for a message
+                    Default: 300
+      --jms-message-selector=MESSAGE-SELECTOR
+                  jms message-selector
+  -V, --version   Print version information and exit.
+....

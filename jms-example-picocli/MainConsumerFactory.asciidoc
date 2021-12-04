@@ -1,0 +1,63 @@
+= MainConsumerFactory
+Receive messages from a queue or a topic.
+:TOC:
+
+
+== SYNOPSIS
+
+Receive messages from a queue or a topic.
+
+....
+MainConsumerFactory [-hV] [--jms-session-transacted]
+    [--activemq-brokerURL=BROKER_URL]
+    [--activemq-password=<password>]
+    [--activemq-userName=<userName>]
+    [--jms-max-receive-count=MAX-RECEIVE-COUNT]
+    [--jms-max-waittime-seconds=MAX-WAITTIME-SECONDS]
+    [--jms-message-selector=MESSAGE-SELECTOR]
+    [--jms-session-acknowledgemode=<acknowledgeMode>]
+    [COMMAND]
+....
+
+== DESCRIPTION
+
+....
+Usage: MainConsumerFactory [-hV] [--jms-session-transacted]
+                           [--activemq-brokerURL=BROKER_URL]
+                           [--activemq-password=<password>]
+                           [--activemq-userName=<userName>]
+                           [--jms-max-receive-count=MAX-RECEIVE-COUNT]
+                           [--jms-max-waittime-seconds=MAX-WAITTIME-SECONDS]
+                           [--jms-message-selector=MESSAGE-SELECTOR]
+                           [--jms-session-acknowledgemode=<acknowledgeMode>]
+                           [COMMAND]
+Receive messages from a queue or a topic
+      --activemq-brokerURL=BROKER_URL
+                  activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'
+                    Default: tcp://localhost:61616
+      --activemq-password=<password>
+                  activemq password
+                    Default: password
+      --activemq-userName=<userName>
+                  activemq userName
+                    Default: admin
+  -h, --help      Show this help message and exit.
+      --jms-max-receive-count=MAX-RECEIVE-COUNT
+                  terminate after receiving MAX_RECEIVE_COUNT advisory messages
+                    Default: 1
+      --jms-max-waittime-seconds=MAX-WAITTIME-SECONDS
+                  max time waiting for a message
+                    Default: 300
+      --jms-message-selector=MESSAGE-SELECTOR
+                  jms message-selector
+      --jms-session-acknowledgemode=<acknowledgeMode>
+                  jms session acknowledge mode
+                    Default: AUTO_ACKNOWLEDGE
+      --jms-session-transacted
+                  jms session transacted or non-transacted
+  -V, --version   Print version information and exit.
+Commands:
+  queue         Receive messages from a queue
+  topic         Receive messages from a topic
+  durableTopic  Receive messages from a durable subscribed topic
+....

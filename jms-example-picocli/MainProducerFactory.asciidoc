@@ -1,0 +1,107 @@
+= MainProducerFactory
+Send messages to a queue or a topic.
+:TOC:
+
+== SYNOPSIS
+
+Send messages to a queue or a topic.
+
+....
+MainProducerFactory [-hV] [--jms-session-transacted] [--message-stdin]
+    [--activemq-brokerURL=BROKER_URL]
+    [--activemq-password=<password>]
+    [--activemq-userName=<userName>]
+    [--jms-message-property=<jmsMessageProperty>]
+    [--jms-producer-deliverymode=<deliveryMode>]
+    [--jms-producer-priority=<priority>]
+    [--jms-producer-timetolive=<timeToLive>]
+    [--jms-session-acknowledgemode=<acknowledgeMode>]
+    [--message-file=<messageFile>]
+    [--message-file-charset=<messageFileCharset>]
+    [--message-text=<messageText>] [COMMAND]
+....
+
+== DESCRIPTION
+
+....
+Usage: MainProducerFactory [-hV] [--jms-session-transacted] [--message-stdin]
+                           [--activemq-brokerURL=BROKER_URL]
+                           [--activemq-password=<password>]
+                           [--activemq-userName=<userName>]
+                           [--jms-message-property=<jmsMessageProperty>]
+                           [--jms-producer-deliverymode=<deliveryMode>]
+                           [--jms-producer-priority=<priority>]
+                           [--jms-producer-timetolive=<timeToLive>]
+                           [--jms-session-acknowledgemode=<acknowledgeMode>]
+                           [--message-file=<messageFile>]
+                           [--message-file-charset=<messageFileCharset>]
+                           [--message-text=<messageText>] [COMMAND]
+Send messages to a queue or a topic
+      --activemq-brokerURL=BROKER_URL
+                        activemq brokerURL, format tcp://{host}:{port}, eg.
+                          `tcp://localost:61616'
+                          Default: tcp://localhost:61616
+      --activemq-password=<password>
+                        activemq password
+                          Default: password
+      --activemq-userName=<userName>
+                        activemq userName
+                          Default: admin
+  -h, --help            Show this help message and exit.
+      --jms-message-property=<jmsMessageProperty>
+                        jms message property, format {type}:key=value;... type=
+                          [boolean|byte|double|float|int|long|object|string|short]
+      --jms-producer-deliverymode=<deliveryMode>
+                        jms producer deliverymode value
+                          [PERSISTENT|NON_PERSISTENT]
+                          Default: PERSISTENT
+      --jms-producer-priority=<priority>
+                        jms producer priortiy, eg. `4'
+                          Default: 4
+      --jms-producer-timetolive=<timeToLive>
+                        jms producer timetolive value in ms, eg. `60000'
+                          Default: 60000
+      --jms-session-acknowledgemode=<acknowledgeMode>
+                        jms session acknowledge mode
+                          Default: AUTO_ACKNOWLEDGE
+      --jms-session-transacted
+                        jms session transacted or non-transacted
+      --message-file=<messageFile>
+                        read message text from this file
+      --message-file-charset=<messageFileCharset>
+                        read message text using this charset
+                          Default: UTF-8
+      --message-stdin   read message text from stdin
+      --message-text=<messageText>
+                        read message text from option value
+                          Default: Hello, world!
+  -V, --version         Print version information and exit.
+Commands:
+  queue  Send messages to a queue
+  topic  Send messages to a topic
+....
+
+== MainUtil
+
+=== SYNOPSIS
+
+some utility commands.
+
+....
+MainUtil [-hV] [COMMAND]
+....
+
+=== DESCRIPTION
+
+....
+Usage: MainUtil [-hV] [COMMAND]
+some utility commands
+  -h, --help      Show this help message and exit.
+  -V, --version   Print version information and exit.
+Commands:
+  longToDate                 Convert long values to Date value and print both
+                               values
+  systemProperties           print system properties
+  envProperties              print env properties
+  activeMqConnectionFactory  print activemq properties
+....
