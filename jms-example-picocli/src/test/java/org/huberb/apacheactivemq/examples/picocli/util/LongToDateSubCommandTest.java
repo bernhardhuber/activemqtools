@@ -71,7 +71,11 @@ public class LongToDateSubCommandTest {
             final String result = instance.convertLongToDate(epochMilliSeconds);
             final String m = "" + result;
             assertAll(
-                    () -> assertEquals(1638652980000L, epochMilliSeconds),
+                    () -> assertTrue(
+                            1638652980000L == epochMilliSeconds
+                            || 1638656580000L == epochMilliSeconds,
+                            "" + epochMilliSeconds
+                    ),
                     () -> assertTrue(
                             "2021-12-04 23:23:00,0".equals(result)
                             || "2021-12-04 22:23:00,0".equals(result),
