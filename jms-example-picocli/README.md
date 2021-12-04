@@ -5,51 +5,46 @@ A number of commandline tools for accessing Apache Activemq.
 # Main0
 
 ```
-Usage: Main0 [-hV] [--jms-transacted] [--activemq-brokerURL=<brokerURL>]
-             [--activemq-host=<host>] [--activemq-password=<password>]
-             [--activemq-port=<port>] [--activemq-user=<user>] -c=<command>
-             [--jms-deliverymode=<deliveryMode>] [--jms-queue=<queueName>]
-             [--jms-timetolive=<timeToLive>] [--jms-topic=<topicName>]
+Usage: Main0 [-hV] [--jms-transacted] [--activemq-brokerURL=BROKER_URL]
+             [--activemq-host=HOST] [--activemq-password=PASSWORD]
+             [--activemq-port=PORT] [--activemq-user=USER] -c=<command>
+             [--jms-deliverymode=<deliveryMode>] [--jms-queue=QUEUE]
+             [--jms-timetolive=<timeToLive>] [--jms-topic=TOPIC]
              [--nummessages=<numMessages>]
 Invoke activemq jms operations as provided by activemq-exaplemes openwire
-      --activemq-brokerURL=<brokerURL>
-                            activemq brokerURL
-                              Default: tcp://localhost:61616
-      --activemq-host=<host>
-                            activemq host
-                              Default: localhost
-      --activemq-password=<password>
-                            activemq password
-                              Default: password
-      --activemq-port=<port>
-                            activemq port
-                              Default: 61616
-      --activemq-user=<user>
-                            activemq user
-                              Default: admin
-  -c, --command=<command>   command
-                              [queueProducer|queueConsumer|topicPublisher|topicS
-                              ubscriber|advisory|durSubPublisher|durSubSubscribe
-                              r|browser|browserProducer|tempDestConsumer|tempDes
-                              tProducerRequestReply]
-  -h, --help                Show this help message and exit.
+      --activemq-brokerURL=BROKER_URL
+                             activemq brokerURL
+                               Default: tcp://localhost:61616
+      --activemq-host=HOST   activemq host
+                               Default: localhost
+      --activemq-password=PASSWORD
+                             activemq password
+                               Default: password
+      --activemq-port=PORT   activemq port
+                               Default: 61616
+      --activemq-user=USER   activemq user
+                               Default: admin
+  -c, --command=<command>    launch a command; valid values: queueProducer,
+                               queueConsumer, advisory, topicPublisher,
+                               topicSubscriber, durSubPublisher,
+                               durSubSubscriber, browser, browserProducer,
+                               tempDestConsumer, tempDestProducerRequestReply
+  -h, --help                 Show this help message and exit.
       --jms-deliverymode=<deliveryMode>
-                            jms delivery mode [PERSISTENT|NON_PERSISTENT]
-                              Default: NON_PERSISTENT
-      --jms-queue=<queueName>
-                            jms destination queue
-                              Default: test-queue
+                             jms delivery mode [PERSISTENT|NON_PERSISTENT]
+                               Default: NON_PERSISTENT
+      --jms-queue=QUEUE      jms destination queue
+                               Default: test-queue
       --jms-timetolive=<timeToLive>
-                            jms timetolive [ms]
-                              Default: 60000
-      --jms-topic=<topicName>
-                            jms destination topic
-                              Default: test-topic
-      --jms-transacted      jms transacted
+                             jms timetolive [ms]
+                               Default: 60000
+      --jms-topic=TOPIC      jms destination topic
+                               Default: test-topic
+      --jms-transacted       jms transacted
       --nummessages=<numMessages>
-                            count of messages to produce
-                              Default: 100
-  -V, --version             Print version information and exit.
+                             count of messages to produce
+                               Default: 100
+  -V, --version              Print version information and exit.
 ```
 
 # MainAdvisoryConsumer
