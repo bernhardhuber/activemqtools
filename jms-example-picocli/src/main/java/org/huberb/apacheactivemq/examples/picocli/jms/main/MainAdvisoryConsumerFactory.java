@@ -91,7 +91,6 @@ public class MainAdvisoryConsumerFactory implements Callable<Integer> {
             activeMQConnectionFactory.buildFromMap(m);
             try {
                 final AdvisoryConsumerFactory browserFactory = new AdvisoryConsumerFactory(activeMQConnectionFactory);
-                //List<Message> messagesList =
                 final int theMaxReceiveCount = this.maxReceiveCount;
                 final int theMaxWaittimeSeconds = this.maxWaittimeSeconds;
 
@@ -112,7 +111,13 @@ public class MainAdvisoryConsumerFactory implements Callable<Integer> {
     }
 
     void verboseReceivingFromAdvisoryTopic(String theBrokerURL, String theDestination, String messageSelector) {
-        logger.info(String.format("Receiving from advisory topic `%s' from brokerURL `%s' using message selector '%s'", theBrokerURL, theDestination, messageSelector));
+        logger.info(String.format("Receiving from advisory topic `%s', "
+                + "from brokerURL `%s', "
+                + "using message selector '%s'",
+                theBrokerURL,
+                theDestination,
+                messageSelector)
+        );
     }
 
     void verboseBrowsedMessages(Iterator<Message> messageIterator) {

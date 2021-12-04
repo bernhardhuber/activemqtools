@@ -100,7 +100,9 @@ public class MainProducerFactory implements Callable<Integer> {
     //--- jms message header
     @CommandLine.Option(
             names = {"--jms-message-property"},
-            description = "jms message property, format {type}:key=value;... type=[boolean|byte|double|float|int|long|object|string|short]")
+            description = "jms message property, "
+            + "format {type}:key=value;... "
+            + "type=[boolean|byte|double|float|int|long|object|string|short]")
     private String jmsMessageProperty;
 
     //--- message
@@ -227,7 +229,10 @@ public class MainProducerFactory implements Callable<Integer> {
             m.put("producer.priority", this.mainProducerFactory.priority);
 
             //-- message props
-            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainProducerFactory.jmsMessageProperty);
+            final Map<String, Object> jmsMessagePropertyMap
+                    = new MessagePropertyAsStringConverter()
+                            .messagePropertyFromStringConverter(
+                                    this.mainProducerFactory.jmsMessageProperty);
             m.putAll(jmsMessagePropertyMap);
 
             final ProducerFactorySupport producerFactorySupport = new ProducerFactorySupport(this.mainProducerFactory);
@@ -236,7 +241,10 @@ public class MainProducerFactory implements Callable<Integer> {
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {
                 final String theTopicName = this.jmsDestinationTopicName;
-                producerFactorySupport.verboseSendingMessage(this.mainProducerFactory.brokerURL, theMessage, theTopicName);
+                producerFactorySupport.verboseSendingMessage(
+                        this.mainProducerFactory.brokerURL,
+                        theMessage,
+                        theTopicName);
                 //--- ActiveMQConnectionFactory
                 final ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory();
                 activeMQConnectionFactory.buildFromMap(m);
@@ -268,7 +276,14 @@ public class MainProducerFactory implements Callable<Integer> {
 
         void verboseSendingMessage(String theBrokerURL, String theMessage, String theDestination) {
             final String abbrevMessage = theMessage.length() > 120 ? theMessage.substring(0, 120) + "..." : theMessage;
-            logger.info(String.format("Sending message `%s' to brokerURL `%s' into destination `%s'", abbrevMessage, theBrokerURL, theDestination));
+            logger.info(String.format(
+                    "Sending message `%s' "
+                    + "to brokerURL `%s' "
+                    + "into destination `%s'",
+                    abbrevMessage,
+                    theBrokerURL,
+                    theDestination)
+            );
         }
 
         /**

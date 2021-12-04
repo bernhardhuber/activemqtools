@@ -162,23 +162,30 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.transacted", this.mainConsumerFactory.transacted);
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
-            //-- message props
-//            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//            m.putAll(jmsMessagePropertyMap);
+//-- message props
+//final Map<String, Object> jmsMessagePropertyMap =
+//new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
+//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationQueueName != null && !this.jmsDestinationQueueName.isBlank()) {
                 final String theQueueName = this.jmsDestinationQueueName;
-                consumerFactorySupport.verboseReceivingMessage(this.mainConsumerFactory.activemqOptions.getBrokerURL(), theQueueName);
+                consumerFactorySupport.verboseReceivingMessage(
+                        this.mainConsumerFactory.activemqOptions.getBrokerURL(),
+                        theQueueName);
                 //--- ActiveMQConnectionFactory
-                final ActiveMQConnectionFactory activeMQConnectionFactory = mainConsumerFactory.createActiveMQConnectionFactory(m);
+                final ActiveMQConnectionFactory activeMQConnectionFactory
+                        = mainConsumerFactory.createActiveMQConnectionFactory(m);
                 try {
-                    final ConsumerQueueOnlyFactory consumerQueueOnlyFactory = new ConsumerQueueOnlyFactory(activeMQConnectionFactory);
+                    final ConsumerQueueOnlyFactory consumerQueueOnlyFactory
+                            = new ConsumerQueueOnlyFactory(
+                                    activeMQConnectionFactory);
                     final String theJmsMessageSelector = this.mainConsumerFactory.jmsMessageSelector;
                     final int theMaxReceiveCount = this.mainConsumerFactory.maxReceiveCount;
                     final int theMaxWaittimeSeconds = this.mainConsumerFactory.maxWaittimeSeconds;
                     final Optional<Message> optMessage = consumerQueueOnlyFactory.consumeQueueMessage(
-                            m, theQueueName,
+                            m,
+                            theQueueName,
                             theJmsMessageSelector,
                             theMaxReceiveCount,
                             theMaxWaittimeSeconds
@@ -224,24 +231,31 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.transacted", this.mainConsumerFactory.transacted);
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
-            //-- message props
-//            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//            m.putAll(jmsMessagePropertyMap);
+//-- message props
+//final Map<String, Object> jmsMessagePropertyMap =
+//new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
+//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {
                 final String theTopicName = this.jmsDestinationTopicName;
-                consumerFactorySupport.verboseReceivingMessage(this.mainConsumerFactory.activemqOptions.getBrokerURL(), theTopicName);
+                consumerFactorySupport.verboseReceivingMessage(
+                        this.mainConsumerFactory.activemqOptions.getBrokerURL(),
+                        theTopicName);
                 //--- ActiveMQConnectionFactory
-                final ActiveMQConnectionFactory activeMQConnectionFactory = mainConsumerFactory.createActiveMQConnectionFactory(m);
+                final ActiveMQConnectionFactory activeMQConnectionFactory
+                        = mainConsumerFactory.createActiveMQConnectionFactory(m);
 
                 try {
-                    final ConsumerTopicOnlyFactory consumerTopicOnlyFactory = new ConsumerTopicOnlyFactory(activeMQConnectionFactory);
+                    final ConsumerTopicOnlyFactory consumerTopicOnlyFactory
+                            = new ConsumerTopicOnlyFactory(
+                                    activeMQConnectionFactory);
                     final String theJmsMessageSelector = this.mainConsumerFactory.jmsMessageSelector;
                     final int theMaxReceiveCount = this.mainConsumerFactory.maxReceiveCount;
                     final int theMaxWaittimeSeconds = this.mainConsumerFactory.maxWaittimeSeconds;
                     final Optional<Message> optMessage = consumerTopicOnlyFactory.consumeTopicMessage(
-                            m, theTopicName,
+                            m,
+                            theTopicName,
                             theJmsMessageSelector,
                             theMaxReceiveCount,
                             theMaxWaittimeSeconds
@@ -288,9 +302,10 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.transacted", this.mainConsumerFactory.transacted);
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
-            //-- message props
-//            final Map<String, Object> jmsMessagePropertyMap = new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//            m.putAll(jmsMessagePropertyMap);
+//-- message props
+//final Map<String, Object> jmsMessagePropertyMap = new
+//MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
+//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {
@@ -301,12 +316,16 @@ public class MainConsumerFactory implements Callable<Integer> {
                 // *MUST* set clientID
                 activeMQConnectionFactory.setClientID(this.getClass().getSimpleName() + "-clientId");
                 try {
-                    final ConsumerDurableTopicOnlyFactory consumerDurableTopicOnlyFactory = new ConsumerDurableTopicOnlyFactory(activeMQConnectionFactory);
+                    final ConsumerDurableTopicOnlyFactory consumerDurableTopicOnlyFactory
+                            = new ConsumerDurableTopicOnlyFactory(
+                                    activeMQConnectionFactory);
                     final String theJmsMessageSelector = this.mainConsumerFactory.jmsMessageSelector;
                     final int theMaxReceiveCount = this.mainConsumerFactory.maxReceiveCount;
                     final Optional<Message> optMessage = consumerDurableTopicOnlyFactory.consumeTopicMessageAsDurableSubscriber(
-                            m, theTopicName,
-                            theJmsMessageSelector, theMaxReceiveCount
+                            m,
+                            theTopicName,
+                            theJmsMessageSelector,
+                            theMaxReceiveCount
                     );
                     consumerFactorySupport.verboseReceivedMessage(optMessage);
                 } catch (JMSRuntimeException jmsrtex) {
@@ -332,7 +351,10 @@ public class MainConsumerFactory implements Callable<Integer> {
         }
 
         void verboseReceivingMessage(String theBrokerURL, String theDestination) {
-            logger.info(String.format("Receiving message using brokerURL `%s' from destination `%s'", theBrokerURL, theDestination));
+            logger.info(String.format("Receiving message using brokerURL `%s',"
+                    + " from destination `%s'",
+                    theBrokerURL,
+                    theDestination));
         }
 
         void verboseReceivedMessage(Optional<Message> optMessage) {

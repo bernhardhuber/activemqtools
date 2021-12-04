@@ -86,7 +86,11 @@ public class MainBrowserFactory implements Callable<Integer> {
                 final BrowserFactory browserFactory = new BrowserFactory(activeMQConnectionFactory);
                 final String theJmsMessageSelector = this.jmsMessageSelector;
                 final int theJmsMessageMaxCount = this.maxBrowseCount;
-                final List<Message> messagesList = browserFactory.browseMessages(m, theQueueName, theJmsMessageSelector, theJmsMessageMaxCount);
+                final List<Message> messagesList = browserFactory.browseMessages(m,
+                        theQueueName,
+                        theJmsMessageSelector,
+                        theJmsMessageMaxCount
+                );
                 verboseBrowsedMessages(messagesList.iterator());
             } catch (AutoCloseableSupport.JMSRuntimeException jmsrtex) {
                 rc = -2;
@@ -98,7 +102,12 @@ public class MainBrowserFactory implements Callable<Integer> {
     }
 
     void verboseBrowsingQueue(String theBrokerURL, String theDestination, String messageSelector, int maxCount) {
-        logger.info(String.format("Browsing queue`%s' from brokerURL `%s' using message selector '%s' browsing max count %d ", theBrokerURL, theDestination,
+        logger.info(String.format("Browsing queue `%s', "
+                + "from brokerURL `%s', "
+                + "using message selector '%s', "
+                + "browsing max count %d",
+                theBrokerURL,
+                theDestination,
                 messageSelector, maxCount));
     }
 

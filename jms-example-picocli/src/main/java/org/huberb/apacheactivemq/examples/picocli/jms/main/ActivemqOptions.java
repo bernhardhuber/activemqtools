@@ -28,19 +28,19 @@ public class ActivemqOptions {
             names = {"--activemq-userName"},
             paramLabel = "USERNAME",
             defaultValue = "admin",
-            description = "activemq userName, default value: '${DEFAULT-VALUE}'")
+            description = "activemq userName")
     private String userName;
     @CommandLine.Option(
             names = {"--activemq-password"},
             paramLabel = "PASSWORD",
             defaultValue = "password",
-            description = "activemq password, default value: '${DEFAULT-VALUE}'")
+            description = "activemq password")
     private String password;
     @CommandLine.Option(
             names = {"--activemq-brokerURL"},
             paramLabel = "BROKER_URL",
             defaultValue = "tcp://localhost:61616",
-            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616', default value: '${DEFAULT-VALUE}'")
+            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'")
     private String brokerURL;
 
     public String getUserName() {

@@ -32,7 +32,7 @@ import picocli.CommandLine.Command;
         mixinStandardHelpOptions = true,
         showDefaultValues = true,
         version = "Main0 0.1-SNAPSHOT",
-        description = "Invoke activemq jms operations as provided by activemq-examples openwire")
+        description = "Invoke activemq jms operations as provided by activemq-examples openwire.")
 public class Main0 implements Callable<Integer> {
 
     private static final Logger logger = LoggerFactory.getLogger(Main0.class);
@@ -55,7 +55,7 @@ public class Main0 implements Callable<Integer> {
             names = {"--activemq-brokerURL"},
             paramLabel = "BROKER_URL",
             defaultValue = "tcp://localhost:61616",
-            description = "activemq brokerURL")
+            description = "activemq brokerURL, format tcp://{host}:{port}, eg. `tcp://localost:61616'")
     private String brokerURL;
 
     @CommandLine.Option(
