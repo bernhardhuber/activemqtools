@@ -88,7 +88,8 @@ Following command are supported:
 | tempDestProducerRequestReply   | temporary queue producer
 |===
 
-== Example queueProducer
+
+== Example queueProducer, and queueConsumer
 
 Send 5 messages to the queue test-queue,
  at url: tcp://localhost:61616,
@@ -117,7 +118,6 @@ numMessages: 5 [NUM_MESSAGES]
 [main] INFO example.queue.Producer - Sending message #4
 ....
 
-== Example queueConsumer
 
 Receive messages from the queue test-queue,
  at url: tcp://localhost:61616,
@@ -145,3 +145,56 @@ transacted: false, [TRANSACTED]
 [main] INFO example.queue.Consumer - Got #4  message: Message #4
 ....
 
+## Example browse a queue
+
+Send three message into the queue test-queue:
+
+....
+$ $JAVA_HOME/bin/java -jar target/jms-example-picocli-0.1-SNAPSHOT-main0.jar --command=browserProducer --nummessages=3
+[main] INFO org.huberb.apacheactivemq.examples.picocli.Main0 - Parameters:
+command browserProducer, user admin, password password, brokerURL tcp://localhost:61616, host localhost, port 61616, queue test-queue, topic test-topic, transacted false, deliveryMode NON_PERSISTENT, timeToLive 60000, numMessages 3
+[main] INFO example.browser.Producer - Running with:
+url: tcp://localhost:61616,
+user: admin, [ACTIVEMQ_USER]
+password: password, [ACTIVEMQ_PASSWORD]
+host: localhost, [ACTIVEMQ_HOST]
+port: 61616, [ACTIVEMQ_PORT]
+queue: test-queue, [QUEUE]
+transacted: false, [TRANSACTED]
+deliveryMode: 1 (PERSISTENT 2, NON_PERSISTENT 1), [DELIVERY_MODE]
+timeToLive: 60000 ms [TIME_TO_LIVE]
+numMessages 3 [NUM_MESSAGES]
+
+[main] INFO example.browser.Producer - Sending message #0
+[main] INFO example.browser.Producer - Sending message #1
+[main] INFO example.browser.Producer - Sending message #2
+....
+
+Browse messages contained in the queue test-queue:
+
+....
+$ $JAVA_HOME/bin/java -jar target/jms-example-picocli-0.1-SNAPSHOT-main0.jar --command=browser
+[main] INFO org.huberb.apacheactivemq.examples.picocli.Main0 - Parameters:
+command browser, user admin, password password, brokerURL tcp://localhost:61616, host localhost, port 61616, queue test-queue, topic test-topic, transacted false, deliveryMode NON_PERSISTENT, timeToLive 60000, numMessages 100
+[main] INFO example.browser.Browser - Running with:
+url: tcp://localhost:61616,
+user: admin, [ACTIVEMQ_USER]
+password: password, [ACTIVEMQ_PASSWORD]
+host: localhost, [ACTIVEMQ_HOST]
+port: 61616, [ACTIVEMQ_PORT]
+queue: test-queue, [QUEUE]
+transacted: false, [TRANSACTED]
+
+[main] INFO example.browser.Browser - Browsing: ActiveMQTextMessage {commandId = 5, responseRequired = false, messageId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1:1, originalDestination = null, originalTransactionId = null, producerId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1, destination = queue://test-queue, transactionId = null, expiration = 1638627491677, timestamp = 1638627431677, arrival = 0, brokerInTime = 1638627431677, brokerOutTime = 1638627439679, correlationId = null, replyTo = null, persistent = false, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@587e5365, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = Message #0}
+[main] INFO example.browser.Browser - Browsing: ActiveMQTextMessage {commandId = 6, responseRequired = false, messageId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1:2, originalDestination = null, originalTransactionId = null, producerId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1, destination = queue://test-queue, transactionId = null, expiration = 1638627491777, timestamp = 1638627431777, arrival = 0, brokerInTime = 1638627431777, brokerOutTime = 1638627439679, correlationId = null, replyTo = null, persistent = false, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@22fcf7ab, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = Message #1}
+[main] INFO example.browser.Browser - Browsing: ActiveMQTextMessage {commandId = 7, responseRequired = false, messageId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1:3, originalDestination = null, originalTransactionId = null, producerId = ID:DESKTOP-GHTTUME-56808-1638627431476-1:1:1:1, destination = queue://test-queue, transactionId = null, expiration = 1638627491892, timestamp = 1638627431892, arrival = 0, brokerInTime = 1638627431892, brokerOutTime = 1638627439679, correlationId = null, replyTo = null, persistent = false, type = null, priority = 4, groupID = null, groupSequence = 0, targetConsumerId = null, compressed = false, userID = null, content = org.apache.activemq.util.ByteSequence@2de23121, marshalledProperties = null, dataStructure = null, redeliveryCounter = 0, size = 0, properties = null, readOnlyProperties = true, readOnlyBody = true, droppable = false, jmsXGroupFirstForConsumer = false, text = Message #2}
+[main] INFO example.browser.Browser - Browsed #3 messages
+....
+
+== Example topicPublisher, and topicSubscriber
+
+TODO
+
+== Example durSubPublisher, and durSubSubscriber
+
+TODO
