@@ -4,6 +4,8 @@ Consume messages from advisory topics.
 
 == SYNOPSIS
 
+Consume messages from advisory topics.
+
 ....
 MainAdvisoryConsumer [-hV] [--activemq-brokerURL=BROKER_URL]
     [--activemq-password=<password>]
