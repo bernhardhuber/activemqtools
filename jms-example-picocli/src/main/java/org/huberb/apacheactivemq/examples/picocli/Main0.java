@@ -109,22 +109,22 @@ public class Main0 implements Callable<Integer> {
             description = "count of messages to produce")
     private Integer numMessages;
 
-    @CommandLine.Option(names = {"--command", "-c"}, required = true, description = "command ["
-            + "queueProducer|queueConsumer|"
-            + "topicPublisher|topicSubscriber|"
-            + "advisory|"
-            + "durSubPublisher|durSubSubscriber|"
-            + "browser|browserProducer|"
-            + "tempDestConsumer|tempDestProducerRequestReply"
-            + "]")
-    private String command;
+    @CommandLine.Option(names = {"--command", "-c"},
+            required = true,
+            description = "launch a command; valid values: ${COMPLETION-CANDIDATES}")
+    private CommandEnums command;
 
+    /**
+     * Command line entry point
+     */
     public static void main(String[] args) {
-
         final int exitCode = new CommandLine(new Main0()).execute(args);
         System.exit(exitCode);
     }
 
+    /**
+     * Picocli entry point
+     */
     @Override
     public Integer call() throws Exception {
         //---
@@ -149,28 +149,28 @@ public class Main0 implements Callable<Integer> {
         System.getProperties().putAll(m);
         final String[] args = createArgsArray(this.brokerURL);
 
-        if ("queueProducer".equalsIgnoreCase(command)) {
+        if (this.command == CommandEnums.queueProducer) {
             example.queue.Producer.main(args);
-        } else if ("queueConsumer".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.queueConsumer) {
             example.queue.Consumer.main(args);
-        } else if ("advisory".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.advisory) {
             System.getProperties().put("TOPIC", "ActiveMQ.Advisory.>");
             example.advisory.AdvisorySubscriber.main(args);
-        } else if ("topicPublisher".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.topicPublisher) {
             example.topic.Publisher.main(args);
-        } else if ("topicSubscriber".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.topicSubscriber) {
             example.topic.Subscriber.main(args);
-        } else if ("durSubPublisher".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.durSubPublisher) {
             example.topic.durable.Publisher.main(args);
-        } else if ("durSubSubscriber".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.durSubSubscriber) {
             example.topic.durable.Subscriber.main(args);
-        } else if ("browser".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.browser) {
             example.browser.Browser.main(args);
-        } else if ("browserProducer".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.browserProducer) {
             example.browser.Producer.main(args);
-        } else if ("tempDestConsumer".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.tempDestConsumer) {
             example.tempdest.Consumer.main(args);
-        } else if ("tempDestProducerRequestReply".equalsIgnoreCase(command)) {
+        } else if (this.command == CommandEnums.tempDestProducerRequestReply) {
             example.tempdest.ProducerRequestReply.main(args);
         } else {
             logger.warn(String.format("Unknown command %s", command));
@@ -178,6 +178,9 @@ public class Main0 implements Callable<Integer> {
         return 0;
     }
 
+    /**
+     * Create map of entries, used for calling concrete command tool.
+     */
     Map createMapForSystemProperties() {
         final Map m = new HashMap<>();
         m.put("ACTIVEMQ_USER", this.user);
@@ -204,5 +207,22 @@ public class Main0 implements Callable<Integer> {
             args = new String[]{};
         }
         return args;
+    }
+
+    /**
+     * Command as enum type.
+     */
+    static enum CommandEnums {
+        queueProducer,
+        queueConsumer,
+        advisory,
+        topicPublisher,
+        topicSubscriber,
+        durSubPublisher,
+        durSubSubscriber,
+        browser,
+        browserProducer,
+        tempDestConsumer,
+        tempDestProducerRequestReply;
     }
 }
