@@ -25,3 +25,4 @@ hs_err_pid*
 
 **/target/
 **/nbproject/
+/jms-example-picocli/*.html
