@@ -22,6 +22,7 @@ import java.util.Calendar;
 import org.huberb.apacheactivemq.examples.picocli.util.MainUtil.LongToDateSubCommand;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -31,10 +32,16 @@ import org.junit.jupiter.api.Test;
 public class LongToDateSubCommandTest {
 
     @Test
-    public void testConvertLongToDate() {
+    public void testConvertLongToDate_1L() {
         final LongToDateSubCommand instance = new LongToDateSubCommand();
-        assertEquals("1970-01-01 01:00:00,1", instance.convertLongToDate(1L));
+        final String result = instance.convertLongToDate(1L);
+        final String m = "" + result;
+        assertTrue(result.startsWith("1970-01-01 "), m);
+    }
 
+    @Test
+    public void testConvertLongToDate_20211204_222300() {
+        final LongToDateSubCommand instance = new LongToDateSubCommand();
         {
             final long epochMilliSeconds = LocalDateTime.of(2021, Month.DECEMBER, 4, 22, 23, 0)
                     .toEpochSecond(ZoneOffset.UTC)
