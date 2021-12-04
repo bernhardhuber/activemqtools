@@ -32,7 +32,7 @@ import picocli.CommandLine.Command;
         mixinStandardHelpOptions = true,
         showDefaultValues = true,
         version = "Main0 0.1-SNAPSHOT",
-        description = "Invoke activemq jms operations as provided by activemq-exaplemes openwire")
+        description = "Invoke activemq jms operations as provided by activemq-examples openwire")
 public class Main0 implements Callable<Integer> {
 
     private static final Logger logger = LoggerFactory.getLogger(Main0.class);

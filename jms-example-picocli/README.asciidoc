@@ -6,7 +6,7 @@ Apache activemq tools.
 
 === SYNOPSIS
 
-Invoke activemq jms operations as provided by activemq-exaplemes openwire.
+Invoke activemq jms operations as provided by activemq-examples openwire.
 
 ....
 Main0 [-hV] [--jms-transacted]
@@ -33,7 +33,7 @@ Usage: Main0 [-hV] [--jms-transacted] [--activemq-brokerURL=BROKER_URL]
              [--jms-deliverymode=<deliveryMode>] [--jms-queue=QUEUE]
              [--jms-timetolive=<timeToLive>] [--jms-topic=TOPIC]
              [--nummessages=<numMessages>]
-Invoke activemq jms operations as provided by activemq-exaplemes openwire
+Invoke activemq jms operations as provided by activemq-examples openwire
       --activemq-brokerURL=BROKER_URL
                              activemq brokerURL
                                Default: tcp://localhost:61616
