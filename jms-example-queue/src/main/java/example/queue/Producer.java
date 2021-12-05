@@ -21,7 +21,6 @@ import javax.jms.Connection;
 import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
@@ -36,24 +35,20 @@ public class Producer {
 
     private static final Logger logger = LoggerFactory.getLogger(Producer.class);
 
-    private static final String BROKER_URL = "tcp://localhost:61616";
-    private static final Boolean NON_TRANSACTED = false;
-
-    private static final int NUM_MESSAGES_TO_SEND = 100;
     private static final long DELAY = 100;
 
     public static void main(String[] args) {
 
-        final String user = env("ACTIVEMQ_USER", "admin");
-        final String password = env("ACTIVEMQ_PASSWORD", "password");
-        final String host = env("ACTIVEMQ_HOST", "localhost");
-        final int port = Integer.parseInt(env("ACTIVEMQ_PORT", "61616"));
-        final String queueName = env("QUEUE", "test-queue");
-        final boolean transacted = Boolean.parseBoolean(env("TRANSACTED", "false"));
-        final int deliveryMode = env("DELIVERY_MODE", "PERSISTENT").equals("PERSISTENT")
+        final String user = Env.env("ACTIVEMQ_USER", "admin");
+        final String password = Env.env("ACTIVEMQ_PASSWORD", "password");
+        final String host = Env.env("ACTIVEMQ_HOST", "localhost");
+        final int port = Integer.parseInt(Env.env("ACTIVEMQ_PORT", "61616"));
+        final String queueName = Env.env("QUEUE", "test-queue");
+        final boolean transacted = Boolean.parseBoolean(Env.env("TRANSACTED", "false"));
+        final int deliveryMode = Env.env("DELIVERY_MODE", "PERSISTENT").equals("PERSISTENT")
                 ? DeliveryMode.PERSISTENT : DeliveryMode.NON_PERSISTENT;
-        long timeToLive = Long.parseLong(env("TIME_TO_LIVE", "60000"));
-        int numMessages = Integer.parseInt(env("NUM_MESSAGES", "100"));
+        long timeToLive = Long.parseLong(Env.env("TIME_TO_LIVE", "60000"));
+        int numMessages = Integer.parseInt(Env.env("NUM_MESSAGES", "100"));
         if (numMessages < 0) {
             numMessages = 0;
         }
@@ -114,7 +109,7 @@ public class Producer {
             } finally {
                 session.close();
             }
-        } catch (Exception e) {
+        } catch (InterruptedException | JMSException e) {
             logger.warn("Caught exception!", e);
         } finally {
             if (connection != null) {
@@ -125,21 +120,5 @@ public class Producer {
                 }
             }
         }
-    }
-
-    private static String env(String key, String defaultValue) {
-        String rc = System.getProperty(key, null);
-        if (rc == null) {
-            rc = _env(key, defaultValue);
-        }
-        return rc;
-    }
-
-    private static String _env(String key, String defaultValue) {
-        String rc = System.getenv(key);
-        if (rc == null) {
-            return defaultValue;
-        }
-        return rc;
     }
 }

@@ -40,12 +40,12 @@ public class Consumer {
 
     public static void main(String[] args) {
 
-        final String user = env("ACTIVEMQ_USER", "admin");
-        final String password = env("ACTIVEMQ_PASSWORD", "password");
-        final String host = env("ACTIVEMQ_HOST", "localhost");
-        final int port = Integer.parseInt(env("ACTIVEMQ_PORT", "61616"));
-        final String queueName = env("QUEUE", "test-queue");
-        final boolean transacted = Boolean.parseBoolean(env("TRANSACTED", "false"));
+        final String user = Env.env("ACTIVEMQ_USER", "admin");
+        final String password = Env.env("ACTIVEMQ_PASSWORD", "password");
+        final String host = Env.env("ACTIVEMQ_HOST", "localhost");
+        final int port = Integer.parseInt(Env.env("ACTIVEMQ_PORT", "61616"));
+        final String queueName = Env.env("QUEUE", "test-queue");
+        final boolean transacted = Boolean.parseBoolean(Env.env("TRANSACTED", "false"));
 
         String url = "tcp://" + host + ":" + port;
         if (args.length > 0) {
@@ -77,8 +77,8 @@ public class Consumer {
 
             final Session session = connection.createSession(transacted, Session.AUTO_ACKNOWLEDGE);
             try {
-                Destination destination = session.createQueue(queueName);
-                MessageConsumer consumer = session.createConsumer(destination);
+                final Destination destination = session.createQueue(queueName);
+                final MessageConsumer consumer = session.createConsumer(destination);
                 try {
                     int i = 0;
                     while (true) {
@@ -86,7 +86,7 @@ public class Consumer {
 
                         if (message != null) {
                             if (message instanceof TextMessage) {
-                                String text = ((TextMessage) message).getText();
+                                final String text = ((TextMessage) message).getText();
                                 logger.info("Got #{}  message: {}", i++, text);
                             }
                         } else {
@@ -115,19 +115,4 @@ public class Consumer {
         }
     }
 
-    private static String env(String key, String defaultValue) {
-        String rc = System.getProperty(key, null);
-        if (rc == null) {
-            rc = _env(key, defaultValue);
-        }
-        return rc;
-    }
-
-    private static String _env(String key, String defaultValue) {
-        String rc = System.getenv(key);
-        if (rc == null) {
-            return defaultValue;
-        }
-        return rc;
-    }
 }

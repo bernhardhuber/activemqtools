@@ -41,12 +41,12 @@ public class AdvisorySubscriber implements MessageListener {
     }
 
     public static void main(String[] args) {
-        final String user = env("ACTIVEMQ_USER", "admin");
-        final String password = env("ACTIVEMQ_PASSWORD", "password");
-        final String host = env("ACTIVEMQ_HOST", "localhost");
-        final int port = Integer.parseInt(env("ACTIVEMQ_PORT", "61616"));
-        final String topicName = env("TOPIC", "ActiveMQ.Advisory.>");
-        final boolean transacted = Boolean.parseBoolean(env("TRANSACTED", "false"));
+        final String user = Env.env("ACTIVEMQ_USER", "admin");
+        final String password = Env.env("ACTIVEMQ_PASSWORD", "password");
+        final String host = Env.env("ACTIVEMQ_HOST", "localhost");
+        final int port = Integer.parseInt(Env.env("ACTIVEMQ_PORT", "61616"));
+        final String topicName = Env.env("TOPIC", "ActiveMQ.Advisory.>");
+        final boolean transacted = Boolean.parseBoolean(Env.env("TRANSACTED", "false"));
 
         String url = "tcp://" + host + ":" + port;
         if (args.length > 0) {
@@ -104,7 +104,7 @@ public class AdvisorySubscriber implements MessageListener {
     public void onMessage(Message message) {
         try {
             if (message instanceof ActiveMQMessage) {
-                ActiveMQMessage amqMessage = (ActiveMQMessage) message;
+                final ActiveMQMessage amqMessage = (ActiveMQMessage) message;
                 logger.info("Received amqMessage: {}", amqMessage.toString());
                 amqMessage.getDataStructure();
             }
@@ -113,19 +113,4 @@ public class AdvisorySubscriber implements MessageListener {
         }
     }
 
-    private static String env(String key, String defaultValue) {
-        String rc = System.getProperty(key, null);
-        if (rc == null) {
-            rc = _env(key, defaultValue);
-        }
-        return rc;
-    }
-
-    private static String _env(String key, String defaultValue) {
-        String rc = System.getenv(key);
-        if (rc == null) {
-            return defaultValue;
-        }
-        return rc;
-    }
 }
