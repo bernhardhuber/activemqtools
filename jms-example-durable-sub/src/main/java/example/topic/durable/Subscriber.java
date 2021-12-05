@@ -26,7 +26,6 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.RedeliveryPolicy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,9 +36,6 @@ public class Subscriber implements MessageListener {
 
     private static final Logger logger = LoggerFactory.getLogger(Publisher.class);
 
-    private static final String BROKER_URL = "tcp://localhost:61616";
-    private static final Boolean NON_TRANSACTED = false;
-
     private final CountDownLatch countDownLatch;
 
     public Subscriber(CountDownLatch latch) {
@@ -48,12 +44,12 @@ public class Subscriber implements MessageListener {
 
     public static void main(String[] args) {
 
-        String user = env("ACTIVEMQ_USER", "admin");
-        String password = env("ACTIVEMQ_PASSWORD", "password");
-        String host = env("ACTIVEMQ_HOST", "localhost");
-        int port = Integer.parseInt(env("ACTIVEMQ_PORT", "61616"));
-        String topicName = env("TOPIC", "test-topic");
-        boolean transacted = Boolean.parseBoolean(env("TRANSACTED", "false"));
+        String user = Env.env("ACTIVEMQ_USER", "admin");
+        String password = Env.env("ACTIVEMQ_PASSWORD", "password");
+        String host = Env.env("ACTIVEMQ_HOST", "localhost");
+        int port = Integer.parseInt(Env.env("ACTIVEMQ_PORT", "61616"));
+        String topicName = Env.env("TOPIC", "test-topic");
+        boolean transacted = Boolean.parseBoolean(Env.env("TRANSACTED", "false"));
 
         String url = "tcp://" + host + ":" + port;
         if (args.length > 0) {
@@ -114,7 +110,7 @@ public class Subscriber implements MessageListener {
     public void onMessage(Message message) {
         try {
             if (message instanceof TextMessage) {
-                String text = ((TextMessage) message).getText();
+              final  String text = ((TextMessage) message).getText();
                 if ("END".equalsIgnoreCase(text)) {
                     logger.info("Received END message!");
                     countDownLatch.countDown();
@@ -125,21 +121,5 @@ public class Subscriber implements MessageListener {
         } catch (JMSException e) {
             logger.warn("Got a JMS Exception!", e);
         }
-    }
-
-    private static String env(String key, String defaultValue) {
-        String rc = System.getProperty(key, null);
-        if (rc == null) {
-            rc = _env(key, defaultValue);
-        }
-        return rc;
-    }
-
-    private static String _env(String key, String defaultValue) {
-        String rc = System.getenv(key);
-        if (rc == null) {
-            return defaultValue;
-        }
-        return rc;
     }
 }
