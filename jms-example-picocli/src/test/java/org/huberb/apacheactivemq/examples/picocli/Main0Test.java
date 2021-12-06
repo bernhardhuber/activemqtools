@@ -59,7 +59,7 @@ public class Main0Test {
         final int exitCode = cmd.execute(helpOption);
         assertEquals(0, exitCode);
         assertEquals("", swErr.toString(), "stderr");
-        final String swOutAsString = swOut.toString();
+        final String swOutAsString = normalizeStripAnsiColorGraphics(swOut.toString());
         final String m = String.format("stdout helpOption %s, stdout: %s", helpOption, swOutAsString);
         assertNotEquals(0, swOutAsString, m);
         assertTrue(swOutAsString.contains("Usage:"), m);
@@ -69,6 +69,13 @@ public class Main0Test {
         assertTrue(swOutAsString.contains("--help"), m);
         assertTrue(swOutAsString.contains("-V"), m);
         assertTrue(swOutAsString.contains("--version"), m);
+    }
+
+    String normalizeStripAnsiColorGraphics(String s) {
+        // ESC[1;34;{...}m
+        // ESC[ + digits + m
+        String normalized = s.replaceAll("\\x1B\\[[0-9;]+m", "");
+        return normalized;
     }
 
 }
