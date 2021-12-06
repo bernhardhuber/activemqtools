@@ -23,7 +23,7 @@
     <groupId>org.huberb.apache-activemq.examples</groupId>
     <artifactId>advanced-openwire-example</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>v0.1.0-alpha</version>
 
     <modules>
         <module>jms-example-queue</module>

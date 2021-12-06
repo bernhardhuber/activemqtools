@@ -25,7 +25,7 @@
     <parent>
         <artifactId>advanced-openwire-example</artifactId>
         <groupId>org.huberb.apache-activemq.examples</groupId>
-        <version>0.1-SNAPSHOT</version>
+        <version>v0.1.0-alpha</version>
     </parent>
 
     <artifactId>jms-example-queue-selector</artifactId>
