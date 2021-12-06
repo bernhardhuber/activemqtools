@@ -38,7 +38,9 @@ public class MessageFactory {
      * @param messagePropertyMap
      * @return
      */
-    public Function<Session, Message> createTextMessageFromSession(final String textMessageAsString, final Map<String, Object> messagePropertyMap) {
+    public Function<Session, Message> createTextMessageFromSession(
+            final String textMessageAsString,
+            final Map<String, Object> messagePropertyMap) {
         final Function<Session, Message> f = new Function<Session, Message>() {
             @Override
             public Message apply(Session session) {
@@ -63,7 +65,9 @@ public class MessageFactory {
      * @param messagePropertyMap
      * @return
      */
-    public Function<Session, Iterator<Message>> createTextMessageIteratorFromSession(final List<String> textMessagesList, final Map<String, Object> messagePropertyMap) {
+    public Function<Session, Iterator<Message>> createTextMessageIteratorFromSession(
+            final List<String> textMessagesList,
+            final Map<String, Object> messagePropertyMap) {
 
         final Function<Session, Iterator<Message>> f = new Function<Session, Iterator<Message>>() {
             @Override
