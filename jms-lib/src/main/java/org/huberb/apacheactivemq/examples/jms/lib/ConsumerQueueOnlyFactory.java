@@ -72,9 +72,7 @@ public class ConsumerQueueOnlyFactory {
             final int maxWaittimeSeconds) {
 
         final List<Message> l = new ArrayList<>();
-        final Consumer<Message> messageConsumer = (Message message) -> {
-            l.add(message);
-        };
+        final Consumer<Message> messageConsumer = l::add;
         final String theJmsMessageSelector = jmsMessageSelector;
         final int theMaxReceiveCount = maxReceiveCount;
         consumeQueueMessage(m, queueName, theJmsMessageSelector, theMaxReceiveCount, maxWaittimeSeconds, messageConsumer);

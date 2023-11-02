@@ -41,10 +41,8 @@ public class MessageFactory {
     public Function<Session, Message> createTextMessageFromSession(
             final String textMessageAsString,
             final Map<String, Object> messagePropertyMap) {
-        final Function<Session, Message> f = new Function<Session, Message>() {
-            @Override
-            public Message apply(Session session) {
-                try {
+        final Function<Session, Message> f = (Session session) -> {
+            try {
                     final TextMessage textMessage = session.createTextMessage(textMessageAsString);
                     final MessagePropertyFactory messagePropertyFactory = new MessagePropertyFactory();
                     messagePropertyFactory.populateMessagePropertyWith(textMessage, messagePropertyMap);
@@ -52,7 +50,6 @@ public class MessageFactory {
                 } catch (JMSException jmsex) {
                     throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
                 }
-            }
         };
         return f;
     }
@@ -69,10 +66,8 @@ public class MessageFactory {
             final List<String> textMessagesList,
             final Map<String, Object> messagePropertyMap) {
 
-        final Function<Session, Iterator<Message>> f = new Function<Session, Iterator<Message>>() {
-            @Override
-            public Iterator<Message> apply(Session session) {
-                final Iterator<String> textMessageIterator = textMessagesList.iterator();
+        final Function<Session, Iterator<Message>> f = (Session session) -> {
+            final Iterator<String> textMessageIterator = textMessagesList.iterator();
                 final Iterator<Message> messageIterator = new Iterator<Message>() {
                     @Override
                     public boolean hasNext() {
@@ -87,7 +82,6 @@ public class MessageFactory {
                     }
                 };
                 return messageIterator;
-            }
         };
         return f;
     }

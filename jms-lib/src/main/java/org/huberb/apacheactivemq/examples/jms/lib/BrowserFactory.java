@@ -65,9 +65,7 @@ public class BrowserFactory {
             final String jmsMessageSelector,
             int maxBrowseCount) {
         final List<Message> result = new ArrayList<>();
-        final Consumer<Message> messageConsumer = (Message message) -> {
-            result.add(message);
-        };
+        final Consumer<Message> messageConsumer = result::add;
         browseMessages(m, queueName, jmsMessageSelector, maxBrowseCount, messageConsumer);
         return result;
     }
@@ -87,9 +85,7 @@ public class BrowserFactory {
             final String jmsMessageSelector,
             int maxBrowseCount) {
         final AtomicInteger atomicInteger = new AtomicInteger(0);
-        final Consumer<Message> messageConsumer = (Message message) -> {
-            atomicInteger.incrementAndGet();
-        };
+        final Consumer<Message> messageConsumer = (Message message) -> atomicInteger.incrementAndGet();
         browseMessages(m, queueName, jmsMessageSelector, maxBrowseCount, messageConsumer);
         return atomicInteger.intValue();
     }

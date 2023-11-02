@@ -34,15 +34,11 @@ public class DestinationFactory {
      * @return
      */
     public Function<Session, Destination> createDestinationQueueFromSessionFunction(String queueName) {
-        final Function<Session, Destination> f = new Function<Session, Destination>() {
-            @Override
-            public Destination apply(Session session) {
-                try {
-                    final Destination destination = session.createQueue(queueName);
-                    return destination;
-                } catch (JMSException jmsex) {
-                    throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
-                }
+        final Function<Session, Destination> f = (Session session) -> {
+            try {
+                return session.createQueue(queueName);
+            } catch (JMSException jmsex) {
+                throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
             }
         };
         return f;
@@ -55,15 +51,11 @@ public class DestinationFactory {
      * @return
      */
     public Function<Session, Destination> createDestinationTopicFromSessionFunction(String topicName) {
-        final Function<Session, Destination> f = new Function<Session, Destination>() {
-            @Override
-            public Destination apply(Session session) {
-                try {
-                    final Destination destination = session.createTopic(topicName);
-                    return destination;
-                } catch (JMSException jmsex) {
-                    throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
-                }
+        final Function<Session, Destination> f = (Session session) -> {
+            try {
+                return session.createTopic(topicName);
+            } catch (JMSException jmsex) {
+                throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
             }
         };
         return f;
