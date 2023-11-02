@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.huberb.apacheactivemq.examples.jms.picocli;
+package org.huberb.apacheactivemq.examples.jms.picocli.main;
 
 import java.util.Properties;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -24,25 +24,6 @@ import org.junit.jupiter.api.Test;
  * @author pi
  */
 public class ActiveMQConnectionFactoryPropertyTest {
-
-    public ActiveMQConnectionFactoryPropertyTest() {
-    }
-
-    @org.junit.jupiter.api.BeforeAll
-    public static void setUpClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterAll
-    public static void tearDownClass() throws Exception {
-    }
-
-    @org.junit.jupiter.api.BeforeEach
-    public void setUp() throws Exception {
-    }
-
-    @org.junit.jupiter.api.AfterEach
-    public void tearDown() throws Exception {
-    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

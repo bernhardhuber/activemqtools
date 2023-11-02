@@ -10,9 +10,11 @@ This directory contains more advanced examples of how to use ActiveMQ's OpenWire
 
 Command line tools:
 
-* [jms-example-picocli readme](jms-example-picocli/README.md)
+* [jms-picocli readme](jms-picocli/README.md)
 
 Command line tools forked from apache activemq examples:
+
+* [jms-example-picocli readme](jms-example-picocli/README.md)
 
 * [jms-example-queue](./jms-example-queue/readme.md)
 * [jms-example-topic](./jms-example-topic/readme.md)

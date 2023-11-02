@@ -36,10 +36,11 @@
         <module>jms-example-message-browser</module>
         <module>jms-example-queue-selector</module>
         <module>jms-example-composite-destinations</module>
-
         <module>jms-example-picocli</module>
+
+        <module>jms-picocli</module>
         <module>jms-example-webjms</module>
-        <module>jms-example-lib</module>
+        <module>jms-lib</module>
     </modules>
 
     <!--name>JMS / OpeWire Examples for ActiveMQ</name-->

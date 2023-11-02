@@ -6,7 +6,8 @@
         <artifactId>advanced-openwire-example</artifactId>
         <version>0.2.0-SNAPSHOT</version>
     </parent>
-    <artifactId>jms-example-lib</artifactId>
+    <groupId>org.huberb.apache-activemq</groupId>
+    <artifactId>jms-lib</artifactId>
     <packaging>jar</packaging>
 
     <properties>
@@ -17,6 +18,12 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>

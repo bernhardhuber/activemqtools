@@ -15,7 +15,6 @@
  */
 package org.huberb.apacheactivemq.examples.jms.picocli;
 
-import org.huberb.apacheactivemq.examples.jms.picocli.Main0;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import static org.junit.jupiter.api.Assertions.assertEquals;
