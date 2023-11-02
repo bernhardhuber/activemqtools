@@ -53,7 +53,7 @@ class EntryKeyComparator<K extends Object, V> implements Comparator<Map.Entry<K,
         }
 
         List<Map.Entry<String, String>> sortMapEntries(Map<String, String> props) {
-            final Comparator<Map.Entry<String, String>> comparator = new EntryKeyComparator<String, String>();
+            final Comparator<Map.Entry<String, String>> comparator = new EntryKeyComparator<>();
             final List<Map.Entry<String, String>> mapSortedList = props.entrySet()
                     .stream()
                     .sorted(comparator)

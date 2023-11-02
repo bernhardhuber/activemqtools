@@ -145,7 +145,7 @@ public class Main0 implements Callable<Integer> {
                 this.deliveryMode,
                 this.timeToLive,
                 this.numMessages));
-        final Map m = createMapForSystemProperties();
+        final Map<String, String> m = createMapForSystemProperties();
         System.getProperties().putAll(m);
         final String[] args = createArgsArray(this.brokerURL);
 
@@ -181,8 +181,8 @@ public class Main0 implements Callable<Integer> {
     /**
      * Create map of entries, used for calling concrete command tool.
      */
-    Map createMapForSystemProperties() {
-        final Map m = new HashMap<>();
+    Map<String, String> createMapForSystemProperties() {
+        final Map<String, String> m = new HashMap<>();
         m.put("ACTIVEMQ_USER", this.user);
         m.put("ACTIVEMQ_PASSWORD", this.password);
 

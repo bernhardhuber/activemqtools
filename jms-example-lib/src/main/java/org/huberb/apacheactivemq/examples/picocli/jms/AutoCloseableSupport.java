@@ -32,7 +32,7 @@ import javax.jms.TopicSubscriber;
  * @author pi
  */
 public class AutoCloseableSupport {
-
+    private AutoCloseableSupport() {}
     /**
      * Wrap {@link Connection} as {@link AutoCloseable}.
      */
