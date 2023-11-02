@@ -115,7 +115,7 @@
                             <shadedClassifierName>main0</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.Main0</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.Main0</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -131,7 +131,7 @@
                             <shadedClassifierName>mainProducerFactory</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.jms.main.MainProducerFactory</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.main.MainProducerFactory</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -147,7 +147,7 @@
                             <shadedClassifierName>mainAdvisoryConsumerFactory</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.jms.main.MainAdvisoryConsumerFactory</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.main.MainAdvisoryConsumerFactory</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -163,7 +163,7 @@
                             <shadedClassifierName>mainConsumerFactory</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.jms.main.MainConsumerFactory</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.main.MainConsumerFactory</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -180,7 +180,7 @@
                             <shadedClassifierName>mainBrowserFactory</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.jms.main.MainBrowserFactory</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.main.MainBrowserFactory</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
@@ -196,7 +196,7 @@
                             <shadedClassifierName>mainUtil</shadedClassifierName>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>org.huberb.apacheactivemq.examples.picocli.util.MainUtil</mainClass>
+                                    <mainClass>org.huberb.apacheactivemq.examples.jms.picocli.util.MainUtil</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
