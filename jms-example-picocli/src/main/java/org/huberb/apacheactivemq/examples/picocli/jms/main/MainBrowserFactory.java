@@ -22,6 +22,8 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 import javax.jms.Message;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.huberb.apacheactivemq.examples.picocli.jms.AutoCloseableSupport;
+import org.huberb.apacheactivemq.examples.picocli.jms.BrowserFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
