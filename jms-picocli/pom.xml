@@ -14,8 +14,8 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>org.huberb.apache-activemq.examples</groupId>
-            <artifactId>jms-example-lib</artifactId>
+            <groupId>org.huberb.apache-activemq</groupId>
+            <artifactId>jms-lib</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

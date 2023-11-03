@@ -15,23 +15,19 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import org.huberb.apacheactivemq.examples.jms.lib.DestinationFactory;
-import java.util.function.Function;
-import javax.jms.Destination;
-import javax.jms.JMSException;
-import javax.jms.Queue;
-import javax.jms.Session;
-import javax.jms.Topic;
 import org.junit.jupiter.api.AfterEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
-import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
+
+import javax.jms.*;
+import java.util.function.Function;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 /**
  *
@@ -67,12 +63,10 @@ public class DestinationFactoryTest {
         final Session sessionMock = Mockito.mock(Session.class);
         final Queue queueMock = Mockito.mock(Queue.class);
         //Mockito.when(sessionMock.createQueue(aQueueName)).thenReturn(queueMock);
-        Mockito.when(sessionMock.createQueue(aQueueName)).then(new Answer<Queue>() {
-            public Queue answer(InvocationOnMock invocation) throws JMSException {
-                final String queueName = invocation.getArgument(0, String.class);
-                Mockito.when(queueMock.getQueueName()).thenReturn(queueName);
-                return queueMock;
-            }
+        Mockito.when(sessionMock.createQueue(aQueueName)).then((Answer<Queue>) invocation -> {
+            final String queueName = invocation.getArgument(0, String.class);
+            Mockito.when(queueMock.getQueueName()).thenReturn(queueName);
+            return queueMock;
         });
         final Destination resultDestination = resultF.apply(sessionMock);
         assertSame(queueMock, resultDestination);
@@ -91,12 +85,10 @@ public class DestinationFactoryTest {
 
         final Session sessionMock = Mockito.mock(Session.class);
         final Topic topicMock = Mockito.mock(Topic.class);
-        Mockito.when(sessionMock.createTopic(aTopicName)).then(new Answer<Topic>() {
-            public Topic answer(InvocationOnMock invocation) throws JMSException {
-                final String topicName = invocation.getArgument(0, String.class);
-                Mockito.when(topicMock.getTopicName()).thenReturn(topicName);
-                return topicMock;
-            }
+        Mockito.when(sessionMock.createTopic(aTopicName)).then((Answer<Topic>) invocation -> {
+            final String topicName = invocation.getArgument(0, String.class);
+            Mockito.when(topicMock.getTopicName()).thenReturn(topicName);
+            return topicMock;
         });
         final Destination resultDestination = resultF.apply(sessionMock);
         assertSame(topicMock, resultDestination);

@@ -15,16 +15,17 @@
  */
 package org.huberb.apacheactivemq.examples.jms.picocli.util;
 
-import org.huberb.apacheactivemq.examples.jms.picocli.util.EntryKeyComparator;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import org.junit.jupiter.api.AfterEach;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 /**
  *
@@ -53,8 +54,7 @@ public class EntryKeyComparatorTest {
         m.put("c", "cv");
         m.put("b", "bv");
         final EntryKeyComparator<Object, String> instance = new EntryKeyComparator<>();
-        final List<Map.Entry<Object, String>> l = new ArrayList<>();
-        l.addAll(m.entrySet());
+        final List<Map.Entry<Object, String>> l = new ArrayList<>(m.entrySet());
         l.sort(instance);
 
         assertEquals("a:av", l.get(0).getKey() + ":" + l.get(0).getValue());
@@ -73,8 +73,7 @@ public class EntryKeyComparatorTest {
         m.put("b", "bv");
         final EntryKeyComparator<Object, String> instance = new EntryKeyComparator<>();
 
-        final List<Map.Entry<Object, String>> l = m.entrySet()
-                .stream().collect(Collectors.toList())
+        final List<Map.Entry<Object, String>> l = new ArrayList<>(m.entrySet())
                 .stream().sorted(instance).collect(Collectors.toList());
 
         assertEquals("a:av", l.get(0).getKey() + ":" + l.get(0).getValue());

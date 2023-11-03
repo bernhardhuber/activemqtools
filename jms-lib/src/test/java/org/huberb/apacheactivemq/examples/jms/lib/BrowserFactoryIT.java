@@ -5,26 +5,25 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import org.huberb.apacheactivemq.examples.jms.lib.BrowserFactory;
+import org.apache.activemq.junit.EmbeddedActiveMQBroker;
+import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.TextMessage;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.TextMessage;
-import org.apache.activemq.junit.EmbeddedActiveMQBroker;
-import org.junit.Rule;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -110,9 +109,7 @@ public class BrowserFactoryIT {
         final TextMessage textMessage = this.broker.pushMessage(queueName, "message1");
 
         AtomicInteger consumedCount = new AtomicInteger(0);
-        Consumer<Message> c = (message) -> {
-            consumedCount.incrementAndGet();
-        };
+        Consumer<Message> c = (message) -> consumedCount.incrementAndGet();
         instance.browseMessages(m, queueName, jmsMessageSelector, 10, c);
         assertEquals(1, consumedCount.get());
     }

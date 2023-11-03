@@ -106,12 +106,10 @@ public class AdvisoryConsumerFactory {
 
                 //---
                 final Destination destination = new ActiveMQTopic(advisoryTopicName);
-                final String theJmsMessageSelector = jmsMessageSelector;
 
-                try (final AutoCloseableMessageConsumer autoClosableMessageConsumer = new AutoCloseableMessageConsumer(session.createConsumer(destination, theJmsMessageSelector))) {
+                try (final AutoCloseableMessageConsumer autoClosableMessageConsumer = new AutoCloseableMessageConsumer(session.createConsumer(destination, jmsMessageSelector))) {
                     final MessageConsumer consumer = autoClosableMessageConsumer.messageConsumer();
-                    int theMaxReceiveCount = maxReceiveCount;
-                    consumer.setMessageListener(new AdvisoryMessageListener(messageConsumer, theMaxReceiveCount, latch));
+                    consumer.setMessageListener(new AdvisoryMessageListener(messageConsumer, maxReceiveCount, latch));
                     //---
                     int theMaxWaittimeSeconds = maxWaittimeSeconds;
                     if (theMaxWaittimeSeconds < 0) {

@@ -41,7 +41,7 @@ public class MessageFactory {
     public Function<Session, Message> createTextMessageFromSession(
             final String textMessageAsString,
             final Map<String, Object> messagePropertyMap) {
-        final Function<Session, Message> f = (Session session) -> {
+        return (Session session) -> {
             try {
                     final TextMessage textMessage = session.createTextMessage(textMessageAsString);
                     final MessagePropertyFactory messagePropertyFactory = new MessagePropertyFactory();
@@ -51,7 +51,6 @@ public class MessageFactory {
                     throw new AutoCloseableSupport.JMSRuntimeException(jmsex);
                 }
         };
-        return f;
     }
 
     /**
@@ -66,24 +65,21 @@ public class MessageFactory {
             final List<String> textMessagesList,
             final Map<String, Object> messagePropertyMap) {
 
-        final Function<Session, Iterator<Message>> f = (Session session) -> {
+        return (Session session) -> {
             final Iterator<String> textMessageIterator = textMessagesList.iterator();
-                final Iterator<Message> messageIterator = new Iterator<Message>() {
-                    @Override
-                    public boolean hasNext() {
-                        return textMessageIterator.hasNext();
-                    }
+            return new Iterator<>() {
+                @Override
+                public boolean hasNext() {
+                    return textMessageIterator.hasNext();
+                }
 
-                    @Override
-                    public Message next() {
-                        final String messageText = textMessageIterator.next();
-                        final Message message = createTextMessageFromSession(messageText, messagePropertyMap).apply(session);
-                        return message;
-                    }
-                };
-                return messageIterator;
+                @Override
+                public Message next() {
+                    final String messageText = textMessageIterator.next();
+                    return createTextMessageFromSession(messageText, messagePropertyMap).apply(session);
+                }
+            };
         };
-        return f;
     }
 
 }

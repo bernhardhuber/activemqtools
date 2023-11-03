@@ -22,7 +22,7 @@ import java.util.Properties;
 import java.util.stream.Collectors;
 
 /**
- * Compare {@link Entry} key values as String.
+ * Compare {@link Map.Entry} key values as String.
  */
 class EntryKeyComparator<K extends Object, V> implements Comparator<Map.Entry<K, V>> {
 

@@ -73,11 +73,8 @@ public class ConsumerQueueOnlyFactory {
 
         final List<Message> l = new ArrayList<>();
         final Consumer<Message> messageConsumer = l::add;
-        final String theJmsMessageSelector = jmsMessageSelector;
-        final int theMaxReceiveCount = maxReceiveCount;
-        consumeQueueMessage(m, queueName, theJmsMessageSelector, theMaxReceiveCount, maxWaittimeSeconds, messageConsumer);
-        final Optional<Message> result = l.stream().findFirst();
-        return result;
+        consumeQueueMessage(m, queueName, jmsMessageSelector, maxReceiveCount, maxWaittimeSeconds, messageConsumer);
+        return l.stream().findFirst();
     }
 
     /**
@@ -110,12 +107,10 @@ public class ConsumerQueueOnlyFactory {
                 final Session session = autoCloseableSession.session();
                 //---
                 final Destination destination = fDestinationFromSession.apply(session);
-                final String theJmsMessageSelector = jmsMessageSelector;
 
-                try (final AutoCloseableMessageConsumer autoCloseableMessageConsumer = new AutoCloseableMessageConsumer(session.createConsumer(destination, theJmsMessageSelector, false))) {
+                try (final AutoCloseableMessageConsumer autoCloseableMessageConsumer = new AutoCloseableMessageConsumer(session.createConsumer(destination, jmsMessageSelector, false))) {
                     final MessageConsumer consumer = autoCloseableMessageConsumer.messageConsumer();
-                    int theMaxReceiveCount = maxReceiveCount;
-                    consumer.setMessageListener(new ConsumerMessageListener(messageConsumer, theMaxReceiveCount, latch));
+                    consumer.setMessageListener(new ConsumerMessageListener(messageConsumer, maxReceiveCount, latch));
                     //---
                     int theMaxWaittimeSeconds = maxWaittimeSeconds;
                     if (theMaxWaittimeSeconds < 0) {

@@ -54,7 +54,7 @@ public class EvaluateMessageText {
     EvaluateMessageText(EvalMode evalMode, String messageText, File messageFile, String messageFileCharset) {
         this.messageText = messageText;
         this.messageFile = messageFile;
-        this.messageFileCharset = messageFileCharset != null ? "UTF-8" : messageFileCharset;
+        this.messageFileCharset = messageFileCharset == null ? "UTF-8" : messageFileCharset;
         this.evalMode = evalMode;
     }
 

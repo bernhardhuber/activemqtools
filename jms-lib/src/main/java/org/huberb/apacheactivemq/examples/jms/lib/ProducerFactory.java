@@ -15,10 +15,7 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import javax.jms.Connection;
@@ -64,7 +61,7 @@ public class ProducerFactory {
             final String messageText
     ) {
         final Function<Session, Destination> fDestinationFromSession = df.createDestinationQueueFromSessionFunction(queueName);
-        final Function<Session, Iterator<Message>> fMesageIteratorFromSession = mf.createTextMessageIteratorFromSession(Arrays.asList(messageText), m);
+        final Function<Session, Iterator<Message>> fMesageIteratorFromSession = mf.createTextMessageIteratorFromSession(Collections.singletonList(messageText), m);
 
         sendDestinationMessages(m, fDestinationFromSession, fMesageIteratorFromSession);
     }
@@ -100,7 +97,7 @@ public class ProducerFactory {
             final String messageText
     ) {
         final Function<Session, Destination> fDestinationFromSession = df.createDestinationTopicFromSessionFunction(topicName);
-        final Function<Session, Iterator<Message>> fMesageIteratorFromSession = mf.createTextMessageIteratorFromSession(Arrays.asList(messageText), m);
+        final Function<Session, Iterator<Message>> fMesageIteratorFromSession = mf.createTextMessageIteratorFromSession(Collections.singletonList(messageText), m);
 
         sendDestinationMessages(m, fDestinationFromSession, fMesageIteratorFromSession);
     }

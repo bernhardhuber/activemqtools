@@ -163,9 +163,6 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
 //-- message props
-//final Map<String, Object> jmsMessagePropertyMap =
-//new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationQueueName != null && !this.jmsDestinationQueueName.isBlank()) {
@@ -232,9 +229,6 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
 //-- message props
-//final Map<String, Object> jmsMessagePropertyMap =
-//new MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {
@@ -303,9 +297,6 @@ public class MainConsumerFactory implements Callable<Integer> {
             m.put("session.acknowledgeMode", this.mainConsumerFactory.acknowledgeMode);
 
 //-- message props
-//final Map<String, Object> jmsMessagePropertyMap = new
-//MessagePropertyAsStringConverter().messagePropertyFromStringConverter(this.mainConsumerFactory.jmsMessageProperty);
-//m.putAll(jmsMessagePropertyMap);
             final ConsumerFactorySupport consumerFactorySupport = new ConsumerFactorySupport(this.mainConsumerFactory);
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {

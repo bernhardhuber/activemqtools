@@ -5,31 +5,23 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import org.huberb.apacheactivemq.examples.jms.lib.ConsumerTopicOnlyFactory;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import org.apache.activemq.junit.EmbeddedActiveMQBroker;
+import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-import org.apache.activemq.junit.EmbeddedActiveMQBroker;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.*;
 
-import org.junit.Rule;
-import org.junit.jupiter.api.AfterEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -73,7 +65,7 @@ public class ConsumerTopicOnlyFactoryIT {
         Optional<Message> messageOpt = instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 0, maxWaittimeSeconds);
         assertFalse(messageOpt.isPresent());
 
-        assertEquals(0L - 0L, this.broker.getMessageCount(topicName));
+        assertEquals(0L, this.broker.getMessageCount(topicName));
     }
 
     /**
@@ -82,7 +74,7 @@ public class ConsumerTopicOnlyFactoryIT {
      * @throws javax.jms.JMSException
      */
     @Test
-    public void testConsumeTopicMessage_4args_1_from_1message() throws JMSException, InterruptedException, ExecutionException, TimeoutException, Exception {
+    public void testConsumeTopicMessage_4args_1_from_1message() throws ExecutionException, InterruptedException, JMSException {
         final Map<String, Object> m = Collections.emptyMap();
         final String topicName = "consumeTopic_testConsumeTopicMessage_4args_1_from_1message";
         final String jmsMessageSelector = "";
@@ -93,8 +85,7 @@ public class ConsumerTopicOnlyFactoryIT {
         };
 
         final Callable<Optional<Message>> callableConsumer = () -> {
-            Optional<Message> messageOpt = instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 1, maxWaittimeSeconds);
-            return messageOpt;
+            return instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 1, maxWaittimeSeconds);
         };
         final ExecutorService executorService = Executors.newFixedThreadPool(2);
         final Future<Optional<Message>> futureOptionalMessagee = executorService.submit(callableConsumer);
@@ -117,7 +108,7 @@ public class ConsumerTopicOnlyFactoryIT {
             }
         }
 
-        assertEquals(1L - 1L, this.broker.getMessageCount(topicName));
+        assertEquals(0L, this.broker.getMessageCount(topicName));
     }
 
     /**
@@ -126,7 +117,7 @@ public class ConsumerTopicOnlyFactoryIT {
      * @throws javax.jms.JMSException
      */
     @Test
-    public void testConsumeTopicMessage_4args_1_from_2message() throws JMSException, InterruptedException, ExecutionException, TimeoutException, Exception {
+    public void testConsumeTopicMessage_4args_1_from_2message() throws ExecutionException, InterruptedException, JMSException{
         final Map<String, Object> m = Collections.emptyMap();
         final String topicName = "consumeTopic_testConsumeTopicMessage_4args_1_from_2message";
         final String jmsMessageSelector = "";
@@ -137,8 +128,7 @@ public class ConsumerTopicOnlyFactoryIT {
             return 2;
         };
         final Callable<Optional<Message>> callableConsumer = () -> {
-            final Optional<Message> messageOpt = instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 1, maxWaittimeSeconds);
-            return messageOpt;
+            return instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 1, maxWaittimeSeconds);
         };
         final ExecutorService executorService = Executors.newFixedThreadPool(2);
         final Future<Optional<Message>> futureOptionalMessagee = executorService.submit(callableConsumer);
@@ -160,7 +150,7 @@ public class ConsumerTopicOnlyFactoryIT {
             } catch (TimeoutException toex) {
             }
         }
-        assertEquals(2L - 2L, this.broker.getMessageCount(topicName));
+        assertEquals(0L, this.broker.getMessageCount(topicName));
     }
 
     /**
@@ -169,7 +159,7 @@ public class ConsumerTopicOnlyFactoryIT {
      * @throws javax.jms.JMSException
      */
     @Test
-    public void testConsumeTopicMessage_4args_2_from_2message() throws JMSException, InterruptedException, ExecutionException, TimeoutException, Exception {
+    public void testConsumeTopicMessage_4args_2_from_2message() throws ExecutionException, InterruptedException, JMSException {
         final Map<String, Object> m = Collections.emptyMap();
         final String topicName = "consumeTopic_testConsumeTopicMessage_4args_2_from_2message";
         final String jmsMessageSelector = "";
@@ -179,8 +169,7 @@ public class ConsumerTopicOnlyFactoryIT {
             return 2;
         };
         final Callable<Optional<Message>> callableConsumer = () -> {
-            Optional<Message> messageOpt = instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 2, maxWaittimeSeconds);
-            return messageOpt;
+            return instance.consumeTopicMessage(m, topicName, jmsMessageSelector, 2, maxWaittimeSeconds);
         };
         final ExecutorService executorService = Executors.newFixedThreadPool(2);
         final Future<Optional<Message>> futureOptionalMessagee = executorService.submit(callableConsumer);
@@ -203,7 +192,7 @@ public class ConsumerTopicOnlyFactoryIT {
             }
         }
 
-        assertEquals(2L - 2L, this.broker.getMessageCount(topicName));
+        assertEquals(0L, this.broker.getMessageCount(topicName));
     }
 
     /**

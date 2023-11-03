@@ -5,23 +5,22 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import org.huberb.apacheactivemq.examples.jms.lib.ConsumerQueueOnlyFactory;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Optional;
+import org.apache.activemq.junit.EmbeddedActiveMQBroker;
+import org.junit.Rule;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.TextMessage;
-import org.apache.activemq.junit.EmbeddedActiveMQBroker;
-import org.junit.Rule;
-import org.junit.jupiter.api.AfterEach;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
+import java.util.Collections;
+import java.util.Map;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
@@ -65,7 +64,7 @@ public class ConsumerQueueOnlyFactoryIT {
         Optional<Message> messageOpt = instance.consumeQueueMessage(m, queueName, jmsMessageSelector, 0, maxWaittimeSeconds);
         assertFalse(messageOpt.isPresent());
 
-        assertEquals(0L - 0L, this.broker.getMessageCount(queueName));
+        assertEquals(0L, this.broker.getMessageCount(queueName));
     }
 
     /**
@@ -84,7 +83,7 @@ public class ConsumerQueueOnlyFactoryIT {
         assertTrue(messageOpt.isPresent());
         assertEquals("message1", ((TextMessage) messageOpt.get()).getText());
 
-        assertEquals(1L - 1L, this.broker.getMessageCount(queueName));
+        assertEquals(0L, this.broker.getMessageCount(queueName));
     }
 
     /**
@@ -125,7 +124,7 @@ public class ConsumerQueueOnlyFactoryIT {
         assertTrue(messageOpt.isPresent());
         assertEquals("message1", ((TextMessage) messageOpt.get()).getText());
 
-        assertEquals(2L - 2L, this.broker.getMessageCount(queueName));
+        assertEquals(0L, this.broker.getMessageCount(queueName));
     }
 
     /**

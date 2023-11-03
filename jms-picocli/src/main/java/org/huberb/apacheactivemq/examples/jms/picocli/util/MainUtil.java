@@ -110,7 +110,7 @@ public class MainUtil implements Callable<Integer> {
         @Override
         public Integer call() throws Exception {
             final Properties props = System.getProperties();
-            // sort properties an print them
+            // sort properties and print them
             final List<Entry<Object, Object>> propsSortedList = new EntryKeySorter().sortProperties(props);
             propsSortedList.forEach((Entry<Object, Object> e) -> {
                 logger.info(String.format("%s: %s", e.getKey(), e.getValue()));
@@ -129,7 +129,7 @@ public class MainUtil implements Callable<Integer> {
         @Override
         public Integer call() throws Exception {
             final Map<String, String> envMap = System.getenv();
-            // sort properties an print them
+            // sort properties and print them
             final List<Entry<String, String>> propsSortedList = new EntryKeySorter().sortMapEntries(envMap);
             propsSortedList.forEach((Entry<String, String> e) -> {
                 logger.info(String.format("%s: %s", e.getKey(), e.getValue()));
@@ -161,7 +161,7 @@ public class MainUtil implements Callable<Integer> {
             final Properties props = new Properties();
             activeMQConnectionFactory.populateProperties(props);
 
-            // sort properties an print them
+            // sort properties and print them
             final List<Entry<Object, Object>> propsSortedList = new EntryKeySorter().sortProperties(props);
             propsSortedList.forEach((Entry<Object, Object> e) -> {
                 logger.info(String.format("%s: %s", e.getKey(), e.getValue()));

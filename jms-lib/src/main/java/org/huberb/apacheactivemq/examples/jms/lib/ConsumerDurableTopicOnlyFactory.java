@@ -62,11 +62,8 @@ public class ConsumerDurableTopicOnlyFactory {
             l.clear();
             l.add(message);
         };
-        final String theJmsMessageSelector = jmsMessageSelector;
-        final int theMaxReceiveCount = maxReceiveCount;
-        consumeTopicMessageAsDurableSubscriber(m, topicName, theJmsMessageSelector, theMaxReceiveCount, messageConsumer);
-        final Optional<Message> result = Optional.ofNullable(l.get(0));
-        return result;
+        consumeTopicMessageAsDurableSubscriber(m, topicName, jmsMessageSelector, maxReceiveCount, messageConsumer);
+        return Optional.ofNullable(l.get(0));
     }
 
     public void consumeTopicMessageAsDurableSubscriber(
@@ -91,13 +88,11 @@ public class ConsumerDurableTopicOnlyFactory {
                 //---
                 final Destination destination = fDestinationFromSession.apply(session);
                 final Topic topic = (Topic) destination;
-                final String theJmsMessageSelector = jmsMessageSelector;
                 final String theDurableSubscriberName = "A";
                 try (final AutoCloseableTopicSubscriber autoCloseableTopicSubscriber = new AutoCloseableTopicSubscriber(
-                        session.createDurableSubscriber(topic, theDurableSubscriberName, theJmsMessageSelector, false))) {
+                        session.createDurableSubscriber(topic, theDurableSubscriberName, jmsMessageSelector, false))) {
                     final TopicSubscriber topicSubscriber = autoCloseableTopicSubscriber.topicSubscriber();
-                    final int theMaxReceiveCount = maxReceiveCount;
-                    topicSubscriber.setMessageListener(new ConsumerMessageListener(messageConsumer, theMaxReceiveCount, latch));
+                    topicSubscriber.setMessageListener(new ConsumerMessageListener(messageConsumer, maxReceiveCount, latch));
                     //---
                     long awaitInMillis = TimeUnit.MINUTES.toMillis(60);
                     latch.await(awaitInMillis, TimeUnit.MILLISECONDS);

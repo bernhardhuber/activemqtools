@@ -57,7 +57,7 @@ public class AutoCloseableSupport {
     }
 
     /**
-     * Wrap {@link Sesion} as {@link AutoCloseable}.
+     * Wrap {@link Session} as {@link AutoCloseable}.
      */
     public static class AutoCloseableSession implements AutoCloseable {
 

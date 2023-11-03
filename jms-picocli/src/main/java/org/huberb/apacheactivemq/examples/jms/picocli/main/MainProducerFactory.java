@@ -16,10 +16,7 @@
 package org.huberb.apacheactivemq.examples.jms.picocli.main;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 import org.apache.activemq.ActiveMQConnectionFactory;
@@ -173,7 +170,7 @@ public class MainProducerFactory implements Callable<Integer> {
 
             final ProducerFactorySupport producerFactorySupport = new ProducerFactorySupport(this.mainProducerFactory);
             final String theMessage = producerFactorySupport.evaluateMessageText();
-            final List<String> listOfMessageText = Arrays.asList(theMessage);
+            final List<String> listOfMessageText = Collections.singletonList(theMessage);
 
             if (this.jmsDestinationQueueName != null && !this.jmsDestinationQueueName.isBlank()) {
                 final String theQueueName = this.jmsDestinationQueueName;
@@ -237,7 +234,7 @@ public class MainProducerFactory implements Callable<Integer> {
 
             final ProducerFactorySupport producerFactorySupport = new ProducerFactorySupport(this.mainProducerFactory);
             final String theMessage = producerFactorySupport.evaluateMessageText();
-            final List<String> listOfMessageText = Arrays.asList(theMessage);
+            final List<String> listOfMessageText = Collections.singletonList(theMessage);
 
             if (this.jmsDestinationTopicName != null && !this.jmsDestinationTopicName.isBlank()) {
                 final String theTopicName = this.jmsDestinationTopicName;

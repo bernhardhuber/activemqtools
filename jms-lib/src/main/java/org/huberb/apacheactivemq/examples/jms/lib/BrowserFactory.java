@@ -123,8 +123,7 @@ public class BrowserFactory {
                 //---
                 final Destination destination = fDestinationFromSession.apply(session);
                 final Queue queue = (Queue) destination;
-                final String theJmsMessageSelector = jmsMessageSelector;
-                try (final AutoCloseableQueueBrowser autoClosableQueueBrowser = new AutoCloseableQueueBrowser(session.createBrowser(queue, theJmsMessageSelector))) {
+                try (final AutoCloseableQueueBrowser autoClosableQueueBrowser = new AutoCloseableQueueBrowser(session.createBrowser(queue, jmsMessageSelector))) {
                     final QueueBrowser queueBrowser = autoClosableQueueBrowser.queueBrowser();
                     browseMessage(queueBrowser, maxBrowseCount, messageConsumer);
                 }
