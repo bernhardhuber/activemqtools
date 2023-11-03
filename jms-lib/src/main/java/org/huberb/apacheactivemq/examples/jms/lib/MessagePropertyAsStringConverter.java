@@ -15,7 +15,6 @@
  */
 package org.huberb.apacheactivemq.examples.jms.lib;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public class MessagePropertyAsStringConverter {
         if (singleMessagPropertyString != null && !singleMessagPropertyString.isBlank()) {
             final String[] singleMessagPropertyStringSplitted = singleMessagPropertyString.split(";");
             if (singleMessagPropertyStringSplitted != null && singleMessagPropertyStringSplitted.length > 0) {
-                for (String keyValueAsString : Arrays.asList(singleMessagPropertyStringSplitted)) {
+                for (String keyValueAsString : singleMessagPropertyStringSplitted) {
                     final String[] keyValueArray = keyValueAsString.split("=");
                     if (keyValueArray != null && keyValueArray.length == 2) {
                         final String key = keyValueArray[0];

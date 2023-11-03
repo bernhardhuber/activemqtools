@@ -15,15 +15,16 @@
  */
 package org.huberb.apacheactivemq.examples.jms.picocli;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import picocli.CommandLine;
+
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  *
@@ -61,7 +62,7 @@ public class Main0Test {
         assertEquals("", swErr.toString(), "stderr");
         final String swOutAsString = normalizeStripAnsiColorGraphics(swOut.toString());
         final String m = String.format("stdout helpOption %s, stdout: %s", helpOption, swOutAsString);
-        assertNotEquals(0, swOutAsString, m);
+
         assertTrue(swOutAsString.contains("Usage:"), m);
         assertTrue(swOutAsString.contains("--command="), m);
         assertTrue(swOutAsString.contains("-c"), m);

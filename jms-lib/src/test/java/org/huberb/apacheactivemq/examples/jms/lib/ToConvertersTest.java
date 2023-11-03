@@ -57,9 +57,9 @@ public class ToConvertersTest {
         assertEquals(Short.valueOf((short) 5), instance.toSupported(ToConverters.SupportedConverters.toShort, "5").get());
         assertEquals("abc", instance.toSupported(ToConverters.SupportedConverters.toString, "abc").get());
 
-        assertEquals(false, instance.toSupported(null, "abc").isPresent());
-        assertEquals(false, instance.toSupported(ToConverters.SupportedConverters.toString, null).isPresent());
-        assertEquals(false, instance.toSupported(null, null).isPresent());
+        assertFalse(instance.toSupported(null, "abc").isPresent());
+        assertFalse(instance.toSupported(ToConverters.SupportedConverters.toString, null).isPresent());
+        assertFalse(instance.toSupported(null, null).isPresent());
 
     }
 
@@ -73,10 +73,10 @@ public class ToConvertersTest {
         assertEquals(true, instance.toBoolean("true").get());
         assertEquals(false, instance.toBoolean("false").get());
 
-        assertEquals(false, instance.toBoolean(null).isPresent());
-        assertEquals(true, instance.toBoolean("").isPresent());
+        assertFalse(instance.toBoolean(null).isPresent());
+        assertTrue(instance.toBoolean("").isPresent());
         assertEquals(false, instance.toBoolean("").get());
-        assertEquals(true, instance.toBoolean("xxx").isPresent());
+        assertTrue(instance.toBoolean("xxx").isPresent());
         assertEquals(false, instance.toBoolean("xxx").get());
     }
 
@@ -88,9 +88,9 @@ public class ToConvertersTest {
         assertEquals(5, instance.toByte((byte) 5).get().intValue());
         assertEquals(5, instance.toByte("5").get().intValue());
 
-        assertEquals(false, instance.toByte(null).isPresent());
-        assertEquals(false, instance.toByte("").isPresent());
-        assertEquals(false, instance.toByte("xxx").isPresent());
+        assertFalse(instance.toByte(null).isPresent());
+        assertFalse(instance.toByte("").isPresent());
+        assertFalse(instance.toByte("xxx").isPresent());
     }
 
     /**
@@ -104,9 +104,9 @@ public class ToConvertersTest {
         assertEquals(5.3, instance.toDouble("5.3").get(), deltaDouble);
         assertEquals(-5.3, instance.toDouble("-5.3").get(), deltaDouble);
 
-        assertEquals(false, instance.toDouble(null).isPresent());
-        assertEquals(false, instance.toDouble("").isPresent());
-        assertEquals(false, instance.toDouble("xxx").isPresent());
+        assertFalse(instance.toDouble(null).isPresent());
+        assertFalse(instance.toDouble("").isPresent());
+        assertFalse(instance.toDouble("xxx").isPresent());
     }
 
     /**
@@ -120,9 +120,9 @@ public class ToConvertersTest {
         assertEquals(5.3, instance.toFloat("5.3").get(), deltaFloat);
         assertEquals(-5.3, instance.toFloat("-5.3").get(), deltaFloat);
 
-        assertEquals(false, instance.toFloat(null).isPresent());
-        assertEquals(false, instance.toFloat("").isPresent());
-        assertEquals(false, instance.toFloat("xxx").isPresent());
+        assertFalse(instance.toFloat(null).isPresent());
+        assertFalse(instance.toFloat("").isPresent());
+        assertFalse(instance.toFloat("xxx").isPresent());
     }
 
     /**
@@ -135,9 +135,9 @@ public class ToConvertersTest {
         assertEquals(5, instance.toInteger("5").get().intValue());
         assertEquals(-5, instance.toInteger("-5").get().intValue());
 
-        assertEquals(false, instance.toInteger(null).isPresent());
-        assertEquals(false, instance.toInteger("").isPresent());
-        assertEquals(false, instance.toInteger("xxx").isPresent());
+        assertFalse(instance.toInteger(null).isPresent());
+        assertFalse(instance.toInteger("").isPresent());
+        assertFalse(instance.toInteger("xxx").isPresent());
     }
 
     /**
@@ -150,9 +150,9 @@ public class ToConvertersTest {
         assertEquals(5, instance.toLong("5").get().longValue());
         assertEquals(-5, instance.toLong("-5").get().longValue());
 
-        assertEquals(false, instance.toLong(null).isPresent());
-        assertEquals(false, instance.toLong("").isPresent());
-        assertEquals(false, instance.toLong("xxx").isPresent());
+        assertFalse(instance.toLong(null).isPresent());
+        assertFalse(instance.toLong("").isPresent());
+        assertFalse(instance.toLong("xxx").isPresent());
     }
 
     /**
@@ -164,10 +164,10 @@ public class ToConvertersTest {
         assertEquals(someObject, instance.toObject(someObject).get());
         assertEquals("abc", instance.toObject("abc").get());
 
-        assertEquals(false, instance.toObject(null).isPresent());
-        assertEquals(true, instance.toObject("").isPresent());
+        assertFalse(instance.toObject(null).isPresent());
+        assertTrue(instance.toObject("").isPresent());
         assertEquals("", instance.toObject("").get());
-        assertEquals(true, instance.toObject("xxx").isPresent());
+        assertTrue(instance.toObject("xxx").isPresent());
         assertEquals("xxx", instance.toObject("xxx").get());
     }
 
@@ -181,9 +181,9 @@ public class ToConvertersTest {
         assertEquals(5, instance.toShort("5").get().shortValue());
         assertEquals(-5, instance.toShort("-5").get().shortValue());
 
-        assertEquals(false, instance.toShort(null).isPresent());
-        assertEquals(false, instance.toShort("").isPresent());
-        assertEquals(false, instance.toShort("xxx").isPresent());
+        assertFalse(instance.toShort(null).isPresent());
+        assertFalse(instance.toShort("").isPresent());
+        assertFalse(instance.toShort("xxx").isPresent());
     }
 
     /**
@@ -197,8 +197,8 @@ public class ToConvertersTest {
         assertEquals("def", instance.toString(new StringBuilder("def")).get());
         assertEquals("def", instance.toString(new StringBuffer("def")).get());
 
-        assertEquals(false, instance.toString(null).isPresent());
-        assertEquals(true, instance.toString("").isPresent());
+        assertFalse(instance.toString(null).isPresent());
+        assertTrue(instance.toString("").isPresent());
         assertEquals("", instance.toString("").get());
         assertEquals("xxx", instance.toString("xxx").get());
     }

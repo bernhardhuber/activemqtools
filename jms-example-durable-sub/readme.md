@@ -25,5 +25,5 @@ In another terminal window run:
 
     mvn -Ppublisher
 
-You can kill the subscriber at any point and it will not miss messages because the subscription it creates
+You can kill the subscriber at any point, and it will not miss messages because the subscription it creates
 is durable

@@ -31,7 +31,7 @@ public class EnumRepresentations {
         private final int integerValue;
         private final String stringValue;
 
-        private DeliveryModeRepresentation(int i, String s) {
+        DeliveryModeRepresentation(int i, String s) {
             this.integerValue = i;
             this.stringValue = s;
         }
@@ -60,7 +60,7 @@ public class EnumRepresentations {
         private final int integerValue;
         private final String stringValue;
 
-        private SessionAcknowledgeRepresentation(int i, String s) {
+        SessionAcknowledgeRepresentation(int i, String s) {
             this.integerValue = i;
             this.stringValue = s;
         }

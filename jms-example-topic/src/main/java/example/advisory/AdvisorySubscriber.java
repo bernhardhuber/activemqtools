@@ -105,7 +105,7 @@ public class AdvisorySubscriber implements MessageListener {
         try {
             if (message instanceof ActiveMQMessage) {
                 final ActiveMQMessage amqMessage = (ActiveMQMessage) message;
-                logger.info("Received amqMessage: {}", amqMessage.toString());
+                logger.info("Received amqMessage: {}", amqMessage);
                 amqMessage.getDataStructure();
             }
         } catch (Exception e) {

@@ -16,33 +16,27 @@
 package org.huberb.apacheactivemq.examples.jms.picocli.main;
 
 import org.huberb.apacheactivemq.examples.jms.picocli.main.EvaluateMessageText;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+
 import org.junit.jupiter.api.AfterEach;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- *
  * @author pi
  */
 public class EvaluateMessageTextTest {
 
     EvaluateMessageText instance;
 
-    public EvaluateMessageTextTest() {
-    }
-
-    @BeforeEach
-    public void setUp() {
-    }
-
-    @AfterEach
-    public void tearDown() {
-    }
 
     /**
      * Test of createForCapturingStdin method, of class EvaluateMessageText.
@@ -50,7 +44,7 @@ public class EvaluateMessageTextTest {
     @Test
     public void testCreateForCapturingStdin() throws UnsupportedEncodingException {
         final String s = "abc";
-        final ByteArrayInputStream newSytemIn = new ByteArrayInputStream(s.getBytes("UTF-8"));
+        final ByteArrayInputStream newSytemIn = new ByteArrayInputStream(s.getBytes(StandardCharsets.UTF_8));
         InputStream systemInSave = System.in;
         try {
             System.setIn(newSytemIn);

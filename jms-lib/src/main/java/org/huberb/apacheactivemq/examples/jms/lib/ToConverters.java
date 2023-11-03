@@ -229,7 +229,7 @@ public class ToConverters {
         return optString;
     }
 
-    public static interface EnumStringIntegerRepresentation {
+    public interface EnumStringIntegerRepresentation {
 
         Enum<? extends Enum> getEnumValue();
 

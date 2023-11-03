@@ -152,7 +152,7 @@ public class MainConsumerFactory implements Callable<Integer> {
 
         @Override
         public Integer call() throws Exception {
-            Integer rc = 0;
+            int rc = 0;
             final Map<String, Object> m = new HashMap<>();
             //-- activemq factory props
             m.put("userName", this.mainConsumerFactory.activemqOptions.getUserName());
@@ -218,7 +218,7 @@ public class MainConsumerFactory implements Callable<Integer> {
 
         @Override
         public Integer call() throws Exception {
-            Integer rc = 0;
+            int rc = 0;
             final Map<String, Object> m = new HashMap<>();
             //-- activemq factory props
             m.put("userName", this.mainConsumerFactory.activemqOptions.getUserName());
@@ -286,7 +286,7 @@ public class MainConsumerFactory implements Callable<Integer> {
 
         @Override
         public Integer call() throws Exception {
-            Integer rc = 0;
+            int rc = 0;
             final Map<String, Object> m = new HashMap<>();
             //-- activemq factory props
             m.put("userName", this.mainConsumerFactory.activemqOptions.getUserName());

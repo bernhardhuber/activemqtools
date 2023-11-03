@@ -35,7 +35,7 @@ class LimitingIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-        boolean hasNext = true;
+        boolean hasNext;
         if (maxIterationsCount >= 0) {
             hasNext = maxIterationsCount > currentIterationCount;
         } else {

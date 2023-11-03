@@ -212,7 +212,7 @@ public class Main0 implements Callable<Integer> {
     /**
      * Command as enum type.
      */
-    static enum CommandEnums {
+    enum CommandEnums {
         queueProducer,
         queueConsumer,
         advisory,
@@ -223,6 +223,6 @@ public class Main0 implements Callable<Integer> {
         browser,
         browserProducer,
         tempDestConsumer,
-        tempDestProducerRequestReply;
+        tempDestProducerRequestReply
     }
 }

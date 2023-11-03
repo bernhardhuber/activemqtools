@@ -32,7 +32,7 @@ public class JmsMessageStore {
 
     public static class JmsMessagStoreEntry {
 
-        private javax.jms.Message message;
+        private final javax.jms.Message message;
 
         public JmsMessagStoreEntry(Message message) {
             this.message = message;
@@ -52,7 +52,7 @@ public class JmsMessageStore {
     }
 
     private final Map<Enum, List<JmsMessagStoreEntry>> m;
-    private int maxSizePerList;
+    private final int maxSizePerList;
 
     public JmsMessageStore() {
         this.m = Collections.synchronizedMap(new HashMap<>());

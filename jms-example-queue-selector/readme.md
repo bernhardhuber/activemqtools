@@ -25,5 +25,5 @@ In another terminal window run:
 
     mvn -Pproducer
 
-In the consumer's terminal, you'll notice that not all of the messages that the producer sent were consumed.
+In the consumer's terminal, you'll notice that not all the messages that the producer sent were consumed.
 Only those that had the property "intended" equal to "me"
