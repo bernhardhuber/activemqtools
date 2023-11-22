@@ -36,7 +36,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Factory createing a consumer of advisory messages.
+ * Factory creating a consumer of advisory messages.
  *
  * @author pi
  */
