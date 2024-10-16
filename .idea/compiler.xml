@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jms-example-webjms" />
+        <module name="jms-example-queue" />
+        <module name="jms-example-temp-destinations" />
+        <module name="jms-example-topic" />
+        <module name="jms-lib" />
+        <module name="jms-example-durable-sub" />
+        <module name="jms-example-queue-selector" />
+        <module name="jms-example-transaction" />
+        <module name="jms-example-composite-destinations" />
+        <module name="jms-example-exclusive-consumer" />
+        <module name="jms-example-wildcard-consumer" />
+        <module name="jms-example-message-browser" />
+      </profile>
+      <profile name="Annotation profile for advanced-openwire-example" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="project" value="org.huberb.apache-activemq.examples/jms-example-picocli" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli-codegen/4.6.1/picocli-codegen-4.6.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli/4.6.1/picocli-4.6.1.jar" />
+        </processorPath>
+        <module name="jms-example-picocli" />
+      </profile>
+      <profile name="Annotation profile for jms-picocli" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <option name="project" value="org.huberb.apache-activemq/jms-picocli" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli-codegen/4.6.1/picocli-codegen-4.6.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli/4.6.1/picocli-4.6.1.jar" />
+        </processorPath>
+        <module name="jms-picocli" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="jms-example-picocli" options="-Aproject=org.huberb.apache-activemq.examples/jms-example-picocli" />
+      <module name="jms-picocli" options="-Aproject=org.huberb.apache-activemq/jms-picocli" />
+    </option>
+  </component>
+</project>

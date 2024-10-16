@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/jms-example-composite-destinations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-composite-destinations/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-durable-sub/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-durable-sub/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-exclusive-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-exclusive-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-message-browser/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-message-browser/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-picocli/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-picocli/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-queue-selector/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-queue-selector/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-queue/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-queue/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-temp-destinations/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-temp-destinations/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-topic/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-topic/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-transaction/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-transaction/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-webjms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-webjms/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-wildcard-consumer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-example-wildcard-consumer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-lib/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-lib/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-picocli/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/jms-picocli/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
